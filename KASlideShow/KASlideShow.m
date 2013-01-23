@@ -7,9 +7,12 @@
 
 #import "KASlideShow.h"
 
+@interface KASlideShow()
+@property (atomic) BOOL doStop;
+@end
+
 @implementation KASlideShow{
     NSUInteger nbSlides;
-    BOOL doStop;
     NSMutableArray * slides;
 }
 
@@ -19,7 +22,6 @@
 - (void)awakeFromNib
 {
     [self setDefaultValues];
-    NSLog(@"bloop");
 }
 
 
@@ -35,9 +37,9 @@
 - (void) setDefaultValues
 {
     slides = [NSMutableArray array];
-    delay = 3;
-    transitionDuration = 1;
-    doStop = NO;
+    delay = 1;
+    transitionDuration = 0.3;
+    _doStop = NO;
 }
 
 
@@ -65,15 +67,15 @@
 
 
 - (void) start
-{    
+{
     if(nbSlides <= 1){
         return;
     }
-    
-    [self performSelector:@selector(animate) withObject:nil afterDelay:delay];
+    _doStop = NO;
+    [self performSelector:@selector(next) withObject:nil afterDelay:delay];
 }
 
-- (void) animate
+- (void) next
 {
     UIImageView * currentImage = (UIImageView *) slides[0];
     UIView * lastImage = (UIImageView *) slides[nbSlides-1];
@@ -88,19 +90,20 @@
                          [slides removeObjectAtIndex:0];
                          currentImage.alpha = 1;
                          
-                         if(! doStop){
-                             [self performSelector:@selector(animate) withObject:nil afterDelay:delay];
+                         if(! _doStop){
+                             [self performSelector:@selector(next) withObject:nil afterDelay:delay];
                          }else{
-                             doStop = NO;
+                             _doStop = NO;
                          }
                          
                      }];
 }
 
+
 - (void) stop
 {
-    doStop = YES;
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animate) object:nil];
+    _doStop = YES;
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
 }
 
 
