@@ -12,5 +12,6 @@ Pod::Spec.new do |s|
 
   s.source_files = 'KASlideShow/*.{h,m}'
   s.clean_paths  = 'Demo'
-  s.framework    = 'Foundation'
+  s.framework = 'Foundation'
+  s.framework = 'UIKit'
 end
