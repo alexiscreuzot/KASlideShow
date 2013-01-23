@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/kirualex/KASlideShow'}
 
   s.description = 'KASlideShow by kirualex.'
-  s.requires_arc = 'yes'
+  s.requires_arc = yes
 
   s.source_files = 'KASlideShow/*.{h,m}'
   s.clean_paths  = 'Demo'
