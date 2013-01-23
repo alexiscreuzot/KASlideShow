@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
 
   s.description = 'KASlideShow by kirualex.'
 
+  s.source_files = 'KASlideShow/*.{h,m}'
   s.requires_arc =  true
   s.clean_paths  = 'Demo'
   s.framework = 'Foundation'
