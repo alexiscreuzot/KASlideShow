@@ -10,36 +10,36 @@
 #import "KASlideShow.h"
 
 @interface ViewController ()
-
-
+@property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @end
 
-@implementation ViewController{
-    KASlideShow * slideshow;
-}
+@implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,20, 320, 150)];
-    [self.view addSubview:slideshow];
-    
-    [slideshow addImageFromNames:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
-    [slideshow setDelay:1];
-    [slideshow setTransitionDuration:1];
+    [_slideshow setDelay:1];
+    [_slideshow setTransitionDuration:1];
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFit];
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
     
 }
 
-- (IBAction)start:(id)sender
+- (IBAction)startStrop:(id)sender
 {
-    [slideshow start];
+    UIButton * button = (UIButton *) sender;
+    
+    if([button.titleLabel.text isEqualToString:@"Start"]){
+        [_slideshow start];
+        [button setTitle:@"Stop" forState:UIControlStateNormal];
+    }else{
+        [_slideshow stop];
+        [button setTitle:@"Start" forState:UIControlStateNormal];
+    }
+    
 }
 
-- (IBAction)stop:(id)sender
-{
-    [slideshow stop];
-}
 
 
 @end

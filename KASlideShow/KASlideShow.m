@@ -9,15 +9,16 @@
 
 @interface KASlideShow()
 @property (atomic) BOOL doStop;
+@property (atomic) BOOL isAnimating;
 @end
 
 @implementation KASlideShow{
-    NSUInteger nbSlides;
     NSMutableArray * slides;
 }
 
 @synthesize delay;
 @synthesize transitionDuration;
+@synthesize imagesContentMode;
 
 - (void)awakeFromNib
 {
@@ -38,47 +39,58 @@
 {
     slides = [NSMutableArray array];
     delay = 1;
+    imagesContentMode = UIViewContentModeScaleAspectFit;
     transitionDuration = 0.3;
-    _doStop = NO;
+    _doStop = YES;
+    _isAnimating = NO;
 }
 
 
-- (void) addImageFromNames:(NSArray *) names
+- (void) addImagesFromResources:(NSArray *) names
 {
-    nbSlides = [names count];
-    
-    UIImageView * lastImageView;
-    
     // Add images
     for(NSString * name in names){
-        UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
-        [imageView setFrame:self.frame];
-        [slides addObject:imageView];
-        
-        if(lastImageView){
-            [self insertSubview:imageView belowSubview:lastImageView];
-        }else{
-            [self addSubview:imageView];
-        }
-        
-        lastImageView = imageView;
+        [self addImage:[UIImage imageNamed:name]];
     }
+}
+
+- (void) addImage:(UIImage*) image
+{
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
+    [imageView setFrame:self.bounds];
+    [imageView setContentMode:imagesContentMode];
+    
+    if([slides count] == 0){
+        [self addSubview:imageView];
+    }else{
+        [self insertSubview:imageView belowSubview:[slides lastObject]];
+    }
+    [slides addObject:imageView];
 }
 
 
 - (void) start
 {
-    if(nbSlides <= 1){
+    
+    if([slides count] <= 1){
         return;
     }
+    
+    
     _doStop = NO;
     [self performSelector:@selector(next) withObject:nil afterDelay:delay];
 }
 
 - (void) next
 {
+    if(_isAnimating){
+        return;
+    }
+    
+    _isAnimating = YES;
+    
     UIImageView * currentImage = (UIImageView *) slides[0];
-    UIView * lastImage = (UIImageView *) slides[nbSlides-1];
+    UIView * lastImage = (UIImageView *) [slides lastObject];
     
     [UIView animateWithDuration:transitionDuration
                      animations:^{
@@ -86,17 +98,17 @@
                      }
                      completion:^(BOOL finished){
                          [self insertSubview:currentImage belowSubview:lastImage];
-                         [slides insertObject:currentImage atIndex:nbSlides];
-                         [slides removeObjectAtIndex:0];
+                         [slides moveObjectFromIndex:0 toIndex:[slides count]];
                          currentImage.alpha = 1;
+                         
+                         _isAnimating = NO;
                          
                          if(! _doStop){
                              [self performSelector:@selector(next) withObject:nil afterDelay:delay];
-                         }else{
-                             _doStop = NO;
                          }
                          
                      }];
+    
 }
 
 
@@ -108,3 +120,4 @@
 
 
 @end
+

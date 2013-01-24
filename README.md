@@ -15,9 +15,10 @@ or use cocoapod with this line :
 
 ## How to use
 
-    [_slideshow addImageFromNames:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
     [_slideshow setDelay:3]; // Delay between transitions
-    [_slideshow setTransitionDuration:2];
+    [_slideshow setTransitionDuration:1];
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFit];
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
     [_slideshow start];
 
 And to stop
