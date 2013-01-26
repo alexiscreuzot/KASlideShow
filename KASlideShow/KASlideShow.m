@@ -13,12 +13,16 @@
 @end
 
 @implementation KASlideShow{
-    NSMutableArray * slides;
+    
+    NSUInteger currentIndex;
+    
+    UIImageView * topImageView;
+    UIImageView * bottomImageView;
 }
 
 @synthesize delay;
 @synthesize transitionDuration;
-@synthesize imagesContentMode;
+@synthesize images;
 
 - (void)awakeFromNib
 {
@@ -37,12 +41,31 @@
 
 - (void) setDefaultValues
 {
-    slides = [NSMutableArray array];
+    images = [NSMutableArray array];
+    currentIndex = 0;
     delay = 1;
-    imagesContentMode = UIViewContentModeScaleAspectFit;
+    
     transitionDuration = 0.3;
     _doStop = YES;
     _isAnimating = NO;
+    
+    topImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    bottomImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    [self setImagesContentMode:UIViewContentModeScaleAspectFit];
+    
+    [self addSubview:bottomImageView];
+    [self addSubview:topImageView];
+}
+
+- (void) setImagesContentMode:(UIViewContentMode)mode
+{
+    topImageView.contentMode = mode;
+    bottomImageView.contentMode = mode;
+}
+
+- (UIViewContentMode) imagesContentMode
+{
+    return topImageView.contentMode;
 }
 
 
@@ -56,26 +79,21 @@
 
 - (void) addImage:(UIImage*) image
 {
-    UIImageView * imageView = [[UIImageView alloc] initWithImage:image];
-    [imageView setFrame:self.bounds];
-    [imageView setContentMode:imagesContentMode];
+    [images addObject:image];
     
-    if([slides count] == 0){
-        [self addSubview:imageView];
-    }else{
-        [self insertSubview:imageView belowSubview:[slides lastObject]];
+    if([images count] == 1){
+        topImageView.image = image;
+    }else if([images count] == 2){
+        bottomImageView.image = image;
     }
-    [slides addObject:imageView];
 }
 
 
 - (void) start
 {
-    
-    if([slides count] <= 1){
+    if([images count] <= 1){
         return;
     }
-    
     
     _doStop = NO;
     [self performSelector:@selector(next) withObject:nil afterDelay:delay];
@@ -83,32 +101,61 @@
 
 - (void) next
 {
-    if(_isAnimating){
-        return;
+    
+    if(! _isAnimating){
+        
+        // Next Image
+        NSUInteger nextIndex = (currentIndex+1)%[images count];
+        topImageView.image = images[currentIndex];
+        bottomImageView.image = images[nextIndex];
+        currentIndex = nextIndex;
+        
+        [self animate];
+    }
+}
+
+
+- (void) previous
+{
+    if(! _isAnimating){
+        
+        // Previous image
+        NSUInteger prevIndex;
+        if(currentIndex == 0){
+            prevIndex = [images count] - 1;
+        }else{
+            prevIndex = (currentIndex-1)%[images count];
+        }
+        topImageView.image = images[currentIndex];
+        bottomImageView.image = images[prevIndex];
+        currentIndex = prevIndex;
+        
+        // Animate
+        [self animate];
     }
     
+}
+
+- (void) animate
+{
     _isAnimating = YES;
-    
-    UIImageView * currentImage = (UIImageView *) slides[0];
-    UIView * lastImage = (UIImageView *) [slides lastObject];
     
     [UIView animateWithDuration:transitionDuration
                      animations:^{
-                         currentImage.alpha = 0;
+                         topImageView.alpha = 0;
                      }
                      completion:^(BOOL finished){
-                         [self insertSubview:currentImage belowSubview:lastImage];
-                         [slides moveObjectFromIndex:0 toIndex:[slides count]];
-                         currentImage.alpha = 1;
+                         
+                         topImageView.image = bottomImageView.image;
+                         topImageView.alpha = 1;
                          
                          _isAnimating = NO;
                          
                          if(! _doStop){
+                             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
                              [self performSelector:@selector(next) withObject:nil afterDelay:delay];
                          }
-                         
                      }];
-    
 }
 
 

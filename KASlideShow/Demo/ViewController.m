@@ -20,11 +20,23 @@
     [super viewDidLoad];
     
     [_slideshow setDelay:1];
-    [_slideshow setTransitionDuration:1];
-    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFit];
+    [_slideshow setTransitionDuration:0.2];
     [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
     
 }
+
+#pragma mark - Button methods
+
+- (IBAction)previous:(id)sender
+{
+    [_slideshow previous];
+}
+
+- (IBAction)next:(id)sender
+{
+    [_slideshow next];
+}
+
 
 - (IBAction)startStrop:(id)sender
 {
