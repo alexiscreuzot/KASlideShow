@@ -5,12 +5,27 @@
 //  Copyright (c) 2013 Alexis Creuzot. All rights reserved.
 //
 
+typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
+    KASlideShowTransitionFade,
+    KASlideShowTransitionSlide
+};
+
+@class KASlideShowDelegate;
+@protocol KASlideShowDelegate <NSObject>
+@optional
+- (void) kaSlideShowDidNext;
+- (void) kaSlideShowDidPrevious;
+@end
+
 @interface KASlideShow : UIView
+
+@property (nonatomic, weak) id <KASlideShowDelegate> delegate;
 
 @property  float delay;
 @property  float transitionDuration;
-@property  UIViewContentMode imagesContentMode;
-@property  NSMutableArray * images;
+@property  (atomic) KASlideShowTransitionType transitionType;
+@property  (atomic) UIViewContentMode imagesContentMode;
+@property  (strong,nonatomic) NSMutableArray * images;
 
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) addImage:(UIImage *) image;
@@ -20,3 +35,4 @@
 - (void) next;
 
 @end
+
