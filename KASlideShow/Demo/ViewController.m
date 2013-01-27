@@ -20,10 +20,11 @@
     [super viewDidLoad];
     
     _slideshow.delegate = self;
-    [_slideshow setDelay:1];
-    [_slideshow setTransitionDuration:1.4];
-    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFit];
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
+    [_slideshow setDelay:3]; // Delay between transitions
+    [_slideshow setTransitionDuration:1]; // Transition duration
+    [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
 }
 
 #pragma mark - KASlideShow delegate
