@@ -57,6 +57,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     
     _topImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     _bottomImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _topImageView.clipsToBounds = YES;
+    _bottomImageView.clipsToBounds = YES;
     [self setImagesContentMode:UIViewContentModeScaleAspectFit];
     
     [self addSubview:_bottomImageView];
@@ -105,9 +107,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 }
 
 - (void) next
-{
-    NSLog(@"Next");
-    
+{    
     if(! _isAnimating){
         
         // Next Image

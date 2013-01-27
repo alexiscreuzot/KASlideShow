@@ -21,9 +21,9 @@
     
     _slideshow.delegate = self;
     [_slideshow setDelay:1];
-    [_slideshow setTransitionDuration:0.2];
+    [_slideshow setTransitionDuration:1.4];
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFit];
     [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]];
-    
 }
 
 #pragma mark - KASlideShow delegate
