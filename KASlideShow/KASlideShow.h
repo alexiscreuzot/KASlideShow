@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
 
 @interface KASlideShow : UIView
 
-@property (nonatomic, weak) IBOutlet id <KASlideShowDelegate> delegate;
+@property (nonatomic, unsafe_unretained) IBOutlet id <KASlideShowDelegate> delegate;
 
 @property  float delay;
 @property  float transitionDuration;
