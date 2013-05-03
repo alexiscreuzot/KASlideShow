@@ -6,7 +6,8 @@ Pod::Spec.new do |s|
   s.summary  = 'Basic iOS slideshow.'
   s.homepage = 'https://github.com/kirualex/KASlideShow'
   s.author   = { 'Alexis Creuzot' => 'alexis.creuzot@gmail.com' }
-  s.source   = { :git => 'https://github.com/kirualex/KASlideShow'}
+  s.source   = { :git => 'https://github.com/kirualex/KASlideShow',
+                  :tag => '1.0'}
 
   s.description = 'KASlideShow by kirualex.'
 
