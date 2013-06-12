@@ -7,7 +7,6 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -16,43 +15,48 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Kaslideshow</h1>
-        <p class="header">Ultra-basic slideshow for iOS (ARC only). </p>
+        <h1>Kaslideshow</h1>
+        <p>Ultra-basic slideshow for iOS (ARC only). </p>
+
+        <p class="view"><a href="https://github.com/kirualex/KASlideShow">View the Project on GitHub <small>kirualex/KASlideShow</small></a></p>
+
 
         <ul>
-          <li class="download"><a class="buttons" href="https://github.com/kirualex/KASlideShow/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/kirualex/KASlideShow/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/kirualex/KASlideShow">View On GitHub</a></li>
+          <li><a href="https://github.com/kirualex/KASlideShow/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kirualex/KASlideShow/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kirualex/KASlideShow">View On <strong>GitHub</strong></a></li>
         </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/kirualex">kirualex</a></p>
-
-
       </header>
       <section>
-        <h1>KASlideShow</h1>
+        <h1>
+<a name="kaslideshow" class="anchor" href="#kaslideshow"><span class="octicon octicon-link"></span></a>KASlideShow</h1>
 
 <p>Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.</p>
 
-<h2>How to install</h2>
+<h2>
+<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How to install</h2>
 
-<h3>Normal install</h3>
+<h3>
+<a name="normal-install" class="anchor" href="#normal-install"><span class="octicon octicon-link"></span></a>Normal install</h3>
 
 <p>Simply copy into your project folder :</p>
 
 <ul>
 <li>KASlideShow.h</li>
 <li>KASlideShow.m</li>
-</ul><h3>Using cocoapod</h3>
+</ul><h3>
+<a name="using-cocoapod" class="anchor" href="#using-cocoapod"><span class="octicon octicon-link"></span></a>Using cocoapod</h3>
 
 <p>add this line to your Podfile :</p>
 
 <pre><code>pod 'KASlideShow', :git =&gt; 'https://github.com/kirualex/KASlideShow.git'
 </code></pre>
 
-<h2>Quick start</h2>
+<h2>
+<a name="quick-start" class="anchor" href="#quick-start"><span class="octicon octicon-link"></span></a>Quick start</h2>
 
-<h3>Creation of a slideshow</h3>
+<h3>
+<a name="creation-of-a-slideshow" class="anchor" href="#creation-of-a-slideshow"><span class="octicon octicon-link"></span></a>Creation of a slideshow</h3>
 
 <pre><code>_slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
 [_slideshow setDelay:3]; // Delay between transitions
@@ -62,13 +66,15 @@
 [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
 </code></pre>
 
-<h3>Other methods to add images</h3>
+<h3>
+<a name="other-methods-to-add-images" class="anchor" href="#other-methods-to-add-images"><span class="octicon octicon-link"></span></a>Other methods to add images</h3>
 
 <pre><code>[_slideshow setImages:myImagesMutableArray]; // Provide your own NSMutableArray of UIImage
 [_slideshow addImage:[UIImage imageNamed:@"myImage.jpeg"]]; // Transition duration
 </code></pre>
 
-<h3>Use of a slideshow</h3>
+<h3>
+<a name="use-of-a-slideshow" class="anchor" href="#use-of-a-slideshow"><span class="octicon octicon-link"></span></a>Use of a slideshow</h3>
 
 <pre><code>[_slideshow next]; // Go to the next image
 [_slideshow previous]; // Got to the previous image
@@ -77,14 +83,17 @@
 [_slideshow stop]; // Stop automatic slideshow
 </code></pre>
 
-<h2>KASlideShowDelegate</h2>
+<h2>
+<a name="kaslideshowdelegate" class="anchor" href="#kaslideshowdelegate"><span class="octicon octicon-link"></span></a>KASlideShowDelegate</h2>
 
-<h3>You can use the delegate by first declaring its target</h3>
+<h3>
+<a name="you-can-use-the-delegate-by-first-declaring-its-target" class="anchor" href="#you-can-use-the-delegate-by-first-declaring-its-target"><span class="octicon octicon-link"></span></a>You can use the delegate by first declaring its target</h3>
 
 <pre><code>_slideshow.delegate = self;
 </code></pre>
 
-<h3>Two delegate methods are provided</h3>
+<h3>
+<a name="two-delegate-methods-are-provided" class="anchor" href="#two-delegate-methods-are-provided"><span class="octicon octicon-link"></span></a>Two delegate methods are provided</h3>
 
 <pre><code>- (void)kaSlideShowDidNext
 {
@@ -97,19 +106,22 @@
 }
 </code></pre>
 
-<h2>Demo screenshot</h2>
+<h2>
+<a name="demo-screenshot" class="anchor" href="#demo-screenshot"><span class="octicon octicon-link"></span></a>Demo screenshot</h2>
 
 <p><img src="http://s9.postimage.org/68sqfbu7j/Capture_d_cran_du_Simulateur_i_OS_27_janv_2013.png" alt="Demo screenshot"></p>
 
-<h2>Misc</h2>
+<h2>
+<a name="misc" class="anchor" href="#misc"><span class="octicon octicon-link"></span></a>Misc</h2>
 
 <p>Do not hesitate to report any bug/issues or missing functionalities. I'm also open to any pull request that can improve this project further !</p>
       </section>
       <footer>
-        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+        <p>This project is maintained by <a href="https://github.com/kirualex">kirualex</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-		
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
