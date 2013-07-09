@@ -1,10 +1,10 @@
-# KASlideShow
+#KASlideShow
 
 Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.
 
-## How to install
+##Install
 
-### Normal install
+###Normal install
 
 Simply copy into your project folder :
 
@@ -12,15 +12,14 @@ Simply copy into your project folder :
  * KASlideShow.m
 
 
-### Using cocoapod
+###Using [cocoapods](http://cocoapods.org)
 
 add this line to your Podfile :
+    pod 'KASlideShow'
 
-    pod 'KASlideShow', :git => 'https://github.com/kirualex/KASlideShow.git'
+##Usage
 
-## Quick start
-
-### Creation of a slideshow
+###Creation of a slideshow
 
     _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
     [_slideshow setDelay:3]; // Delay between transitions
@@ -29,13 +28,13 @@ add this line to your Podfile :
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
 
-### Other methods to add images
+###Other methods to add images
 
     [_slideshow setImages:myImagesMutableArray]; // Provide your own NSMutableArray of UIImage
     [_slideshow addImage:[UIImage imageNamed:@"myImage.jpeg"]]; // Transition duration
 
 
-### Use of a slideshow
+###Use of a slideshow
 
     [_slideshow next]; // Go to the next image
     [_slideshow previous]; // Got to the previous image
@@ -43,13 +42,13 @@ add this line to your Podfile :
     [_slideshow start]; // Start automatic slideshow
     [_slideshow stop]; // Stop automatic slideshow
 
-## KASlideShowDelegate
+### KASlideShowDelegate
 
-### You can use the delegate by first declaring its target
+Don't forget to set the delegate !
 
     _slideshow.delegate = self;
 
-### Two delegate methods are provided
+###Two delegate methods are provided
 
     - (void)kaSlideShowDidNext
     {
@@ -61,7 +60,7 @@ add this line to your Podfile :
         NSLog(@"Previous image");
     }
 
-## Demo screenshot
+##Result
 
 ![Demo screenshot](http://s9.postimage.org/68sqfbu7j/Capture_d_cran_du_Simulateur_i_OS_27_janv_2013.png)
 
