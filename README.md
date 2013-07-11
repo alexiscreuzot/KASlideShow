@@ -15,7 +15,7 @@ Simply copy into your project folder :
 ###Using [cocoapods](http://cocoapods.org)
 
 add this line to your Podfile :
-    pod 'KASlideShow'
+`pod 'KASlideShow'`
 
 ##Usage
 
