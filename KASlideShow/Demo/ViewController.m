@@ -25,6 +25,8 @@
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+    
+    [_slideshow addGesture:KASlideShowGestureAll];
 }
 
 #pragma mark - KASlideShow delegate
