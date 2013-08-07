@@ -20,6 +20,12 @@ typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
     KASlideShowTransitionSlide
 };
 
+typedef NS_ENUM(NSInteger, KASlideShowGestureType) {
+    KASlideShowGestureTap,
+    KASlideShowGestureSwipe,
+    KASlideShowGestureAll
+};
+
 @class KASlideShowDelegate;
 @protocol KASlideShowDelegate <NSObject>
 @optional
@@ -39,6 +45,7 @@ typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
 
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
+- (void) addGesture:(KASlideShowGestureType)gestureType;
 - (void) addImage:(UIImage *) image;
 - (void) start;
 - (void) stop;
