@@ -105,6 +105,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     }
 }
 
+- (void) emptyAndAddImagesFromResources:(NSArray *)names
+{
+    [self.images removeAllObjects];
+    
+    [self addImagesFromResources:names];
+}
 
 - (void) start
 {
@@ -117,7 +123,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 }
 
 - (void) next
-{    
+{
     if(! _isAnimating){
         
         // Next Image
@@ -135,7 +141,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             case KASlideShowTransitionSlide:
                 [self animateSlide:KASlideShowSlideModeForward];
                 break;
-
+                
         }
         
         // Call delegate
@@ -209,7 +215,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     if(mode == KASlideShowSlideModeBackward){
         _bottomImageView.transform = CGAffineTransformMakeTranslation(- _bottomImageView.frame.size.width, 0);
     }else if(mode == KASlideShowSlideModeForward){
-       _bottomImageView.transform = CGAffineTransformMakeTranslation(_bottomImageView.frame.size.width, 0); 
+        _bottomImageView.transform = CGAffineTransformMakeTranslation(_bottomImageView.frame.size.width, 0);
     }
     
     

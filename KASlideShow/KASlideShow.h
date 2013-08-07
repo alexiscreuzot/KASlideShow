@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
 @property  (strong,nonatomic) NSMutableArray * images;
 
 - (void) addImagesFromResources:(NSArray *) names;
+- (void) emptyAndAddImagesFromResources:(NSArray *)names;
 - (void) addImage:(UIImage *) image;
 - (void) start;
 - (void) stop;
