@@ -17,6 +17,8 @@
 
 #import "KASlideShow.h"
 
+#define kSwipeTransitionDuration 0.25
+
 typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     KASlideShowSlideModeForward,
     KASlideShowSlideModeBackward
@@ -29,6 +31,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @property (nonatomic) NSUInteger currentIndex;
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
+
 @end
 
 @implementation KASlideShow
@@ -86,6 +89,24 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     return _topImageView.contentMode;
 }
 
+- (void) addGesture:(KASlideShowGestureType)gestureType
+{
+    switch (gestureType)
+    {
+        case KASlideShowGestureTap:
+            [self addGestureTap];
+            break;
+        case KASlideShowGestureSwipe:
+            [self addGestureSwipe];
+            break;
+        case KASlideShowGestureAll:
+            [self addGestureTap];
+            [self addGestureSwipe];
+            break;
+        default:
+            break;
+    }
+}
 
 - (void) addImagesFromResources:(NSArray *) names
 {
@@ -251,6 +272,64 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
 }
 
+#pragma mark - Gesture Recognizers initializers
+- (void) addGestureTap
+{
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                                                          
+                                                          initWithTarget:self action:@selector(handleSingleTap:)];
+    
+    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    [self addGestureRecognizer:singleTapGestureRecognizer];
+}
+
+- (void) addGestureSwipe
+{
+    UISwipeGestureRecognizer* swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    UISwipeGestureRecognizer* swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    [self addGestureRecognizer:swipeLeftGestureRecognizer];
+    [self addGestureRecognizer:swipeRightGestureRecognizer];
+}
+
+#pragma mark - Gesture Recognizers handling
+- (void)handleSingleTap:(id)sender
+{
+    UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)sender;
+    CGPoint pointTouched = [gesture locationInView:self.topImageView];
+    
+    if (pointTouched.x <= self.topImageView.center.x)
+    {
+        [self previous];
+    }
+    else
+    {
+        [self next];
+    }
+}
+
+- (void) handleSwipe:(id)sender
+{
+    UISwipeGestureRecognizer *gesture = (UISwipeGestureRecognizer *)sender;
+    
+    float oldTransitionDuration = self.transitionDuration;
+    
+    self.transitionDuration = kSwipeTransitionDuration;
+    if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+    {
+        [self next];
+    }
+    else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+    {
+        [self previous];
+    }
+    
+    self.transitionDuration = oldTransitionDuration;
+}
 
 @end
 
