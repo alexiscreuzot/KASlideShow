@@ -129,7 +129,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 - (void) emptyAndAddImagesFromResources:(NSArray *)names
 {
     [self.images removeAllObjects];
-    
+    _currentIndex = 0;
     [self addImagesFromResources:names];
 }
 
@@ -149,6 +149,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         
         // Next Image
         NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+        NSLog(@"NEXT: %d - CURRENT :%d", nextIndex, _currentIndex);
         _topImageView.image = self.images[_currentIndex];
         _bottomImageView.image = self.images[nextIndex];
         _currentIndex = nextIndex;
