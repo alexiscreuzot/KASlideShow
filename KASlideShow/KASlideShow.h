@@ -26,11 +26,11 @@ typedef NS_ENUM(NSInteger, KASlideShowGestureType) {
     KASlideShowGestureAll
 };
 
-@class KASlideShowDelegate;
+@class KASlideShow;
 @protocol KASlideShowDelegate <NSObject>
 @optional
-- (void) kaSlideShowDidNext;
-- (void) kaSlideShowDidPrevious;
+- (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
 @end
 
 @interface KASlideShow : UIView
@@ -39,6 +39,7 @@ typedef NS_ENUM(NSInteger, KASlideShowGestureType) {
 
 @property  float delay;
 @property  float transitionDuration;
+@property  (readonly, nonatomic) NSUInteger currentIndex;
 @property  (atomic) KASlideShowTransitionType transitionType;
 @property  (atomic) UIViewContentMode imagesContentMode;
 @property  (strong,nonatomic) NSMutableArray * images;

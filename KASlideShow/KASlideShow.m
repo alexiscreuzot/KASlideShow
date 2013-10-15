@@ -27,8 +27,6 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @interface KASlideShow()
 @property (atomic) BOOL doStop;
 @property (atomic) BOOL isAnimating;
-
-@property (nonatomic) NSUInteger currentIndex;
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
 
@@ -166,8 +164,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidNext)]){
-            [delegate kaSlideShowDidNext];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidNext:)]){
+            [delegate kaSlideShowDidNext:self];
         }
     }
 }
@@ -200,8 +198,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidPrevious)]){
-            [delegate kaSlideShowDidPrevious];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidPrevious:)]){
+            [delegate kaSlideShowDidPrevious:self];
         }
     }
     
