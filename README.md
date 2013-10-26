@@ -50,12 +50,11 @@ Don't forget to set the delegate !
 
 ###Two delegate methods are provided
 
-    - (void)kaSlideShowDidNext
+    - (void) kaSlideShowDidNext:(KASlideShow *) slideShow
     {
         NSLog(@"Next image");
     }
-
-    -(void)kaSlideShowDidPrevious
+    - (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow
     {
         NSLog(@"Previous image");
     }
