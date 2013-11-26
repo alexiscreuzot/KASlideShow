@@ -64,6 +64,7 @@ Don't forget to set the delegate !
 
 ![Demo screenshot](http://s9.postimage.org/68sqfbu7j/Capture_d_cran_du_Simulateur_i_OS_27_janv_2013.png)
 
-## Misc
 
-Do not hesitate to report any bug/issues or missing functionalities. I'm also open to any pull request that can improve this project further !
+##Support a fellow developer !
+If this code helped you for your project, consider contributing or donating some BTC to `1A37Am7UsJZYdpVGWRiye2v9JBthQrYw9N`
+Thanks !
