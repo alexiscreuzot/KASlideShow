@@ -62,7 +62,7 @@ Don't forget to set the delegate !
 
 ##Result
 
-![Demo screenshot](http://s9.postimage.org/68sqfbu7j/Capture_d_cran_du_Simulateur_i_OS_27_janv_2013.png)
+![Demo screenshot](http://i.imgur.com/QIuoD9P.gif)
 
 
 ##Support a fellow developer !
