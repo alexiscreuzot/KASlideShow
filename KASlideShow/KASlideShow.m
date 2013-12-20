@@ -133,9 +133,6 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) start
 {
-    if([self.images count] <= 1){
-        return;
-    }
     
     _doStop = NO;
     [self performSelector:@selector(next) withObject:nil afterDelay:delay];
@@ -143,7 +140,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) next
 {
-    if(! _isAnimating){
+    if(! _isAnimating &&
+       [self.images count] >1){
         
         // Next Image
         NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
@@ -173,7 +171,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) previous
 {
-    if(! _isAnimating){
+    if(! _isAnimating &&
+       [self.images count] >1){
         
         // Previous image
         NSUInteger prevIndex;
