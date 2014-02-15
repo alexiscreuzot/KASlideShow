@@ -68,6 +68,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     
     _topImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     _bottomImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _topImageView.autoresizingMask = _bottomImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _topImageView.clipsToBounds = YES;
     _bottomImageView.clipsToBounds = YES;
     [self setImagesContentMode:UIViewContentModeScaleAspectFit];
