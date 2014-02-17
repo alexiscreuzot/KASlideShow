@@ -26,13 +26,13 @@ add this line to your Podfile :
     [_slideshow setTransitionDuration:1]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+    [_slideshow setDataSource:self];
 
 ###Other methods to add images
 
-    [_slideshow setImages:myImagesMutableArray]; // Provide your own NSMutableArray of UIImage
-    [_slideshow addImage:[UIImage imageNamed:@"myImage.jpeg"]]; // Transition duration
-
+   - (void) addImagesFromResources:(NSArray *) names;
+   - (void) emptyAndAddImagesFromResources:(NSArray *)names;
+   - (void) addImage:(UIImage *) image;
 
 ###Use of a slideshow
 
@@ -42,6 +42,13 @@ add this line to your Podfile :
     [_slideshow start]; // Start automatic slideshow
     [_slideshow stop]; // Stop automatic slideshow
 
+### KASlideShowDataSource
+
+You need to implement this protocol to use the slideshow
+
+    - (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
+    
+    
 ### KASlideShowDelegate
 
 Don't forget to set the delegate !
@@ -50,15 +57,10 @@ Don't forget to set the delegate !
 
 ###Two delegate methods are provided
 
-    - (void)kaSlideShowDidNext
-    {
-        NSLog(@"Next image");
-    }
-
-    -(void)kaSlideShowDidPrevious
-    {
-        NSLog(@"Previous image");
-    }
+    - (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
+    - (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
+    - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
+    - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
 
 ##Result
 
