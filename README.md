@@ -26,7 +26,7 @@ add this line to your Podfile :
     [_slideshow setTransitionDuration:1]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow setDataSource:self];
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
 
 ###Other methods to add images
 
@@ -44,7 +44,7 @@ add this line to your Podfile :
 
 ### KASlideShowDataSource
 
-You need to implement this protocol to use the slideshow
+You can also implement this protocol to use the slideshow in a more memory efficient way.
 
     - (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
     
