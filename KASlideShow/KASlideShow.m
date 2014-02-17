@@ -141,14 +141,20 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) next
 {
-    if(! _isAnimating &&
-       [self.images count] >1){
+    if(! _isAnimating && ([self.images count] >1 || self.dataSource)) {
+        
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)]) [self.delegate kaSlideShowWillShowNext:self];
         
         // Next Image
-        NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
-        _topImageView.image = self.images[_currentIndex];
-        _bottomImageView.image = self.images[nextIndex];
-        _currentIndex = nextIndex;
+        if (self.dataSource) {
+            _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
+            _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
+        } else {
+            NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+            _topImageView.image = self.images[_currentIndex];
+            _bottomImageView.image = self.images[nextIndex];
+            _currentIndex = nextIndex;
+        }
         
         // Animate
         switch (transitionType) {
@@ -172,19 +178,25 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) previous
 {
-    if(! _isAnimating &&
-       [self.images count] >1){
+    if(! _isAnimating && ([self.images count] >1 || self.dataSource)){
         
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowPrevious:)]) [self.delegate kaSlideShowWillShowPrevious:self];
+
         // Previous image
-        NSUInteger prevIndex;
-        if(_currentIndex == 0){
-            prevIndex = [self.images count] - 1;
-        }else{
-            prevIndex = (_currentIndex-1)%[self.images count];
+        if (self.dataSource) {
+            _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
+            _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
+        } else {
+            NSUInteger prevIndex;
+            if(_currentIndex == 0){
+                prevIndex = [self.images count] - 1;
+            }else{
+                prevIndex = (_currentIndex-1)%[self.images count];
+            }
+            _topImageView.image = self.images[_currentIndex];
+            _bottomImageView.image = self.images[prevIndex];
+            _currentIndex = prevIndex;
         }
-        _topImageView.image = self.images[_currentIndex];
-        _bottomImageView.image = self.images[prevIndex];
-        _currentIndex = prevIndex;
         
         // Animate
         switch (transitionType) {
