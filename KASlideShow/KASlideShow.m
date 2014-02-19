@@ -281,6 +281,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
 }
 
+- (KASlideShowState)state
+{
+    return !_doStop;
+}
+
 #pragma mark - Gesture Recognizers initializers
 - (void) addGestureTap
 {

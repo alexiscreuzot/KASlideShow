@@ -31,6 +31,11 @@ typedef NS_ENUM(NSUInteger, KASlideShowPosition) {
     KASlideShowPositionBottom
 };
 
+typedef NS_ENUM(NSUInteger, KASlideShowState) {
+    KASlideShowStateStopped,
+    KASlideShowStateStarted
+};
+
 @class KASlideShow;
 @protocol KASlideShowDelegate <NSObject>
 @optional
@@ -55,6 +60,7 @@ typedef NS_ENUM(NSUInteger, KASlideShowPosition) {
 @property  (atomic) KASlideShowTransitionType transitionType;
 @property  (atomic) UIViewContentMode imagesContentMode;
 @property  (strong,nonatomic) NSMutableArray * images;
+@property  (readonly, nonatomic) KASlideShowState state;
 
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
