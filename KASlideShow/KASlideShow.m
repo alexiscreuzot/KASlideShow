@@ -134,9 +134,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) start
 {
-    
     _doStop = NO;
-    [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+    [self next];
 }
 
 - (void) next
