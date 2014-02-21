@@ -134,9 +134,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) start
 {
-    
     _doStop = NO;
-    [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+    [self next];
 }
 
 - (void) next
@@ -280,6 +279,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     _doStop = YES;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
+}
+
+- (KASlideShowState)state
+{
+    return !_doStop;
 }
 
 #pragma mark - Gesture Recognizers initializers
