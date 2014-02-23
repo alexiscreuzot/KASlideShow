@@ -2,6 +2,8 @@
 
 Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.
 
+![Demo screenshot](http://i.imgur.com/I1164Xc.gif)
+
 ##Install
 
 ###Normal install
@@ -30,9 +32,9 @@ add this line to your Podfile :
 
 ###Other methods to add images
 
-    [_slideshow setImages:myImagesMutableArray]; // Provide your own NSMutableArray of UIImage
-    [_slideshow addImage:[UIImage imageNamed:@"myImage.jpeg"]]; // Transition duration
-
+   - (void) addImagesFromResources:(NSArray *) names;
+   - (void) emptyAndAddImagesFromResources:(NSArray *)names;
+   - (void) addImage:(UIImage *) image;
 
 ###Use of a slideshow
 
@@ -42,27 +44,28 @@ add this line to your Podfile :
     [_slideshow start]; // Start automatic slideshow
     [_slideshow stop]; // Stop automatic slideshow
 
+### KASlideShowDataSource
+
+You can also implement this protocol to use the slideshow in a more memory efficient way.
+
+    - (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
+    
+    
 ### KASlideShowDelegate
 
 Don't forget to set the delegate !
 
     _slideshow.delegate = self;
 
-###Two delegate methods are provided
+### Delegate
 
-    - (void) kaSlideShowDidNext:(KASlideShow *) slideShow
-    {
-        NSLog(@"Next image");
-    }
-    - (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow
-    {
-        NSLog(@"Previous image");
-    }
+    - (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
+    - (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
+    - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
+    - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
 
-##Result
 
-![Demo screenshot](http://s9.postimage.org/68sqfbu7j/Capture_d_cran_du_Simulateur_i_OS_27_janv_2013.png)
 
-## Misc
-
-Do not hesitate to report any bug/issues or missing functionalities. I'm also open to any pull request that can improve this project further !
+##Support a fellow developer !
+If this code helped you for your project, consider contributing or donating some BTC to `1A37Am7UsJZYdpVGWRiye2v9JBthQrYw9N`
+Thanks !

@@ -68,6 +68,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     
     _topImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     _bottomImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _topImageView.autoresizingMask = _bottomImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _topImageView.clipsToBounds = YES;
     _bottomImageView.clipsToBounds = YES;
     [self setImagesContentMode:UIViewContentModeScaleAspectFit];
@@ -133,23 +134,26 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) start
 {
-    if([self.images count] <= 1){
-        return;
-    }
-    
     _doStop = NO;
-    [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+    [self next];
 }
 
 - (void) next
 {
-    if(! _isAnimating){
+    if(! _isAnimating && ([self.images count] >1 || self.dataSource)) {
+        
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)]) [self.delegate kaSlideShowWillShowNext:self];
         
         // Next Image
-        NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
-        _topImageView.image = self.images[_currentIndex];
-        _bottomImageView.image = self.images[nextIndex];
-        _currentIndex = nextIndex;
+        if (self.dataSource) {
+            _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
+            _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
+        } else {
+            NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+            _topImageView.image = self.images[_currentIndex];
+            _bottomImageView.image = self.images[nextIndex];
+            _currentIndex = nextIndex;
+        }
         
         // Animate
         switch (transitionType) {
@@ -173,18 +177,25 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) previous
 {
-    if(! _isAnimating){
+    if(! _isAnimating && ([self.images count] >1 || self.dataSource)){
         
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowPrevious:)]) [self.delegate kaSlideShowWillShowPrevious:self];
+
         // Previous image
-        NSUInteger prevIndex;
-        if(_currentIndex == 0){
-            prevIndex = [self.images count] - 1;
-        }else{
-            prevIndex = (_currentIndex-1)%[self.images count];
+        if (self.dataSource) {
+            _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
+            _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
+        } else {
+            NSUInteger prevIndex;
+            if(_currentIndex == 0){
+                prevIndex = [self.images count] - 1;
+            }else{
+                prevIndex = (_currentIndex-1)%[self.images count];
+            }
+            _topImageView.image = self.images[_currentIndex];
+            _bottomImageView.image = self.images[prevIndex];
+            _currentIndex = prevIndex;
         }
-        _topImageView.image = self.images[_currentIndex];
-        _bottomImageView.image = self.images[prevIndex];
-        _currentIndex = prevIndex;
         
         // Animate
         switch (transitionType) {
@@ -268,6 +279,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     _doStop = YES;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
+}
+
+- (KASlideShowState)state
+{
+    return !_doStop;
 }
 
 #pragma mark - Gesture Recognizers initializers
