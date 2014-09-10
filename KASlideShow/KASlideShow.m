@@ -16,6 +16,7 @@
 // limitations under the License.
 
 #import "KASlideShow.h"
+#import "UIImageView+WebCache.h"
 
 #define kSwipeTransitionDuration 0.25
 
@@ -29,6 +30,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @property (atomic) BOOL isAnimating;
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
+
+@property (atomic) BOOL fromURL;
 
 @end
 
@@ -116,8 +119,33 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) addImagesFromResources:(NSArray *) names
 {
+    _fromURL = NO;
+    
     for(NSString * name in names){
         [self addImage:[UIImage imageNamed:name]];
+    }
+}
+
+- (void) addImagesFromURLs:(NSArray *)names
+{
+    
+    _fromURL = YES;
+    
+    
+    for(NSString * name in names){
+        
+        [self addImageFromURL:name];
+    }
+}
+
+- (void) addImageFromURL:(NSString *) image
+{
+    [self.images addObject:image];
+    
+    if([self.images count] == 1){
+        [_topImageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
+    }else if([self.images count] == 2){
+        [_bottomImageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
     }
 }
 
@@ -162,10 +190,19 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
             _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
         } else {
-            NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
-            _topImageView.image = self.images[_currentIndex];
-            _bottomImageView.image = self.images[nextIndex];
-            _currentIndex = nextIndex;
+            if (_fromURL) {
+                NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+                [_topImageView sd_setImageWithURL:[NSURL URLWithString:self.images[_currentIndex]] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
+                [_bottomImageView sd_setImageWithURL:[NSURL URLWithString:self.images[nextIndex]] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
+                _currentIndex = nextIndex;
+            }else{
+                
+                NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+                _topImageView.image = self.images[_currentIndex];
+                _bottomImageView.image = self.images[nextIndex];
+                _currentIndex = nextIndex;
+            }
+            
         }
         
         // Animate
@@ -205,9 +242,18 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             }else{
                 prevIndex = (_currentIndex-1)%[self.images count];
             }
-            _topImageView.image = self.images[_currentIndex];
-            _bottomImageView.image = self.images[prevIndex];
-            _currentIndex = prevIndex;
+            
+            if (_fromURL) {
+                
+                [_topImageView sd_setImageWithURL:[NSURL URLWithString:self.images[_currentIndex]] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
+                [_bottomImageView sd_setImageWithURL:[NSURL URLWithString:self.images[prevIndex]] placeholderImage:[UIImage imageNamed:@"test_1.jpeg"]];
+                _currentIndex = prevIndex;
+                
+            }else{
+                _topImageView.image = self.images[_currentIndex];
+                _bottomImageView.image = self.images[prevIndex];
+                _currentIndex = prevIndex;
+            }
         }
         
         // Animate
