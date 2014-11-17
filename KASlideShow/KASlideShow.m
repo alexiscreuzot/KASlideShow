@@ -61,6 +61,14 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     _bottomImageView.frame = frame;
 }
 
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    _topImageView.frame = self.bounds;
+    _bottomImageView.frame = self.bounds;
+}
+
 - (void) setDefaultValues
 {
     self.clipsToBounds = YES;
