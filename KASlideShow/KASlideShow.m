@@ -61,7 +61,6 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     _bottomImageView.frame = frame;
 }
 
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
