@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F05FD608-7EB0-4D15-A468-1DFC2577F6D6</string>
+	<string>EE312F21-94DC-4BA7-AB80-36AA0357F45F</string>
 	<key>IDESourceControlProjectName</key>
 	<string>KASlideShow</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</key>
-		<string>ssh://github.com/kirualex/KASlideShow.git</string>
+		<key>ED54AEA2-CB8E-4006-9AA2-5CE53D7656C2</key>
+		<string>https://github.com/ad4n/KASlideShow-SDWebImage.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>KASlideShow.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</key>
+		<key>ED54AEA2-CB8E-4006-9AA2-5CE53D7656C2</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/kirualex/KASlideShow.git</string>
+	<string>https://github.com/ad4n/KASlideShow-SDWebImage.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</string>
+	<string>ED54AEA2-CB8E-4006-9AA2-5CE53D7656C2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</string>
+			<string>ED54AEA2-CB8E-4006-9AA2-5CE53D7656C2</string>
 			<key>IDESourceControlWCCName</key>
-			<string>KASlideShow</string>
+			<string>KASlideShow-SDWebImage</string>
 		</dict>
 	</array>
 </dict>

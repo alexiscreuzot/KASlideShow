@@ -72,5 +72,7 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 - (void) previous;
 - (void) next;
 
+- (void) addImagesFromURLs:(NSArray *) names;
+
 @end
 
