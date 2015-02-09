@@ -94,7 +94,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self setImagesContentMode:UIViewContentModeScaleAspectFit];
     
     [self addSubview:_bottomImageView];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_bottomImageView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_bottomImageView}]];
+    
     [self addSubview:_topImageView];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
 }
 
 - (void) setImagesContentMode:(UIViewContentMode)mode
