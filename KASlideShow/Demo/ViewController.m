@@ -29,14 +29,24 @@
 
 #pragma mark - KASlideShow delegate
 
+- (void)kaSlideShowWillShowNext:(KASlideShow *)slideShow
+{
+    NSLog(@"kaSlideShowWillShowNext, index : %@",@(slideShow.currentIndex));
+}
+
+- (void)kaSlideShowWillShowPrevious:(KASlideShow *)slideShow
+{
+    NSLog(@"kaSlideShowWillShowPrevious, index : %@",@(slideShow.currentIndex));
+}
+
 - (void) kaSlideShowDidNext:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowDidNext, index : %d",slideShow.currentIndex);
+    NSLog(@"kaSlideShowDidNext, index : %@",@(slideShow.currentIndex));
 }
 
 -(void)kaSlideShowDidPrevious:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowDidPrevious, index : %d",slideShow.currentIndex);
+    NSLog(@"kaSlideShowDidPrevious, index : %@",@(slideShow.currentIndex));
 }
 
 #pragma mark - Button methods
