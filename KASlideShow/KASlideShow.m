@@ -54,6 +54,26 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     return self;
 }
 
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    
+    _topImageView.frame = frame;
+    _bottomImageView.frame = frame;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    if (!CGRectEqualToRect(self.bounds, _topImageView.bounds)) {
+        _topImageView.frame = self.bounds;
+    }
+    
+    if (!CGRectEqualToRect(self.bounds, _bottomImageView.bounds)) {
+        _bottomImageView.frame = self.bounds;
+    }
+}
+
 - (void) setDefaultValues
 {
     self.clipsToBounds = YES;
@@ -112,6 +132,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     for(NSString * name in names){
         [self addImage:[UIImage imageNamed:name]];
     }
+}
+
+- (void) setImagesDataSource:(NSMutableArray *)array {
+    self.images = array;
+    
+    _topImageView.image = [array firstObject];
 }
 
 - (void) addImage:(UIImage*) image
@@ -180,7 +206,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     if(! _isAnimating && ([self.images count] >1 || self.dataSource)){
         
         if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowPrevious:)]) [self.delegate kaSlideShowWillShowPrevious:self];
-
+        
         // Previous image
         if (self.dataSource) {
             _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];

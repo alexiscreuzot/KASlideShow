@@ -64,8 +64,3 @@ Don't forget to set the delegate !
     - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
     - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
 
-
-
-##Support a fellow developer !
-If this code helped you for your project, consider contributing or donating some BTC to `1A37Am7UsJZYdpVGWRiye2v9JBthQrYw9N`
-Thanks !
