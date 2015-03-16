@@ -39,8 +39,8 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 @class KASlideShow;
 @protocol KASlideShowDelegate <NSObject>
 @optional
-- (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
-- (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidShowNext:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidShowPrevious:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
 @end
@@ -66,7 +66,9 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
 - (void) setImagesDataSource:(NSMutableArray *)array;
 - (void) addGesture:(KASlideShowGestureType)gestureType;
+- (void) removeGestures;
 - (void) addImage:(UIImage *) image;
+
 - (void) start;
 - (void) stop;
 - (void) previous;

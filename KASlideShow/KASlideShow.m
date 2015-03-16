@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @property (atomic) BOOL isAnimating;
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
-
 @end
 
 @implementation KASlideShow
@@ -127,6 +126,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     }
 }
 
+- (void) removeGestures
+{
+    self.gestureRecognizers = nil;
+}
+
 - (void) addImagesFromResources:(NSArray *) names
 {
     for(NSString * name in names){
@@ -194,12 +198,14 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidNext:)]){
-            [delegate kaSlideShowDidNext:self];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidShowNext:)]){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [delegate kaSlideShowDidShowNext:self];
+            });
         }
     }
 }
-
 
 - (void) previous
 {
@@ -235,8 +241,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidPrevious:)]){
-            [delegate kaSlideShowDidPrevious:self];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidShowPrevious:)]){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [delegate kaSlideShowDidShowPrevious:self];
+            });
         }
     }
     
@@ -315,12 +324,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 #pragma mark - Gesture Recognizers initializers
 - (void) addGestureTap
 {
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          
-                                                          initWithTarget:self action:@selector(handleSingleTap:)];
-    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    
     [self addGestureRecognizer:singleTapGestureRecognizer];
 }
 
@@ -342,12 +347,9 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)sender;
     CGPoint pointTouched = [gesture locationInView:self.topImageView];
     
-    if (pointTouched.x <= self.topImageView.center.x)
-    {
+    if (pointTouched.x <= self.topImageView.center.x){
         [self previous];
-    }
-    else
-    {
+    }else {
         [self next];
     }
 }

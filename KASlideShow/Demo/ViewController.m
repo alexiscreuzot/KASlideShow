@@ -11,6 +11,10 @@
 
 @interface ViewController ()
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
+@property (weak, nonatomic) IBOutlet UIButton *startStopButton;
+@property (weak, nonatomic) IBOutlet UIButton *transitionTypeButton;
+@property (weak, nonatomic) IBOutlet UIButton *previousButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @end
 
 @implementation ViewController
@@ -18,13 +22,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // UI
+    self.startStopButton.layer.cornerRadius = 25;
+    self.transitionTypeButton.layer.cornerRadius = 25;
+    self.previousButton.layer.cornerRadius = 25;
+    self.nextButton.layer.cornerRadius = 25;
     
+    // KASlideshow
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
     [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+    
 }
 
 #pragma mark - KASlideShow delegate
@@ -39,12 +51,12 @@
     NSLog(@"kaSlideShowWillShowPrevious, index : %@",@(slideShow.currentIndex));
 }
 
-- (void) kaSlideShowDidNext:(KASlideShow *)slideShow
+- (void) kaSlideShowDidShowNext:(KASlideShow *)slideShow
 {
     NSLog(@"kaSlideShowDidNext, index : %@",@(slideShow.currentIndex));
 }
 
--(void)kaSlideShowDidPrevious:(KASlideShow *)slideShow
+-(void)kaSlideShowDidShowPrevious:(KASlideShow *)slideShow
 {
     NSLog(@"kaSlideShowDidPrevious, index : %@",@(slideShow.currentIndex));
 }
@@ -65,25 +77,26 @@
 {
     UIButton * button = (UIButton *) sender;
     
-    if([button.titleLabel.text isEqualToString:@"Start"]){
+    if([button.titleLabel.text isEqualToString:@"▸"]){
         [_slideshow start];
-        [button setTitle:@"Stop" forState:UIControlStateNormal];
+        [button setTitle:@"■" forState:UIControlStateNormal];
     }else{
         [_slideshow stop];
-        [button setTitle:@"Start" forState:UIControlStateNormal];
+        [button setTitle:@"▸" forState:UIControlStateNormal];
     }
 }
 
 - (IBAction)switchType:(id)sender
 {
-    UIButton * button = (UIButton *) sender;
-    
-    if([button.titleLabel.text isEqualToString:@"Fade"]){
+    UISegmentedControl * control = (UISegmentedControl *) sender;
+    if(control.selectedSegmentIndex == 0){
         [_slideshow setTransitionType:KASlideShowTransitionFade];
-        [button setTitle:@"Slide" forState:UIControlStateNormal];
+        _slideshow.gestureRecognizers = nil;
+        [_slideshow addGesture:KASlideShowGestureTap];
     }else{
         [_slideshow setTransitionType:KASlideShowTransitionSlide];
-        [button setTitle:@"Fade" forState:UIControlStateNormal];
+        _slideshow.gestureRecognizers = nil;
+        [_slideshow addGesture:KASlideShowGestureSwipe];
     }
 }
 
