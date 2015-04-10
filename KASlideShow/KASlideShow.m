@@ -172,7 +172,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self.images removeAllObjects];
     _currentIndex = 0;
     for (UIImage *image in images){
-        [self addImage:image]
+        [self addImage:image];
     }
 }
 
