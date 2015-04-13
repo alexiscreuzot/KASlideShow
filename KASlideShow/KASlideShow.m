@@ -167,6 +167,15 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addImagesFromResources:names];
 }
 
+- (void) emptyAndAddImages:(NSArray *)images
+{
+    [self.images removeAllObjects];
+    _currentIndex = 0;
+    for (UIImage *image in images){
+        [self addImage:image];
+    }
+}
+
 - (void) start
 {
     _doStop = NO;
