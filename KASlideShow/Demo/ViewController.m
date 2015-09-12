@@ -34,9 +34,18 @@
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+  
+    NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"Video" ofType:@"mp4"];
+    NSURL *videoURL = [NSURL fileURLWithPath:moviePath];
+
+    [_slideshow addMediaFromResources:@[@"test_1.jpeg",@"test_2.jpeg", videoURL,@"test_3.jpeg"]]; // Add images or videos from resources
     [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
     
+}
+
+- (void)viewWillDisappear:(BOOL) animated{
+    [super viewWillDisappear:animated];
+    [_slideshow stopVideos];
 }
 
 #pragma mark - KASlideShow delegate

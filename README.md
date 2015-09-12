@@ -29,7 +29,9 @@ _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
 [_slideshow setTransitionDuration:1]; // Transition duration
 [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
 [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-[_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+NSString *videoPath = [[NSBundle mainBundle] pathForResource:@"Video" ofType:@"mp4"];
+NSURL *videoURL = [NSURL fileURLWithPath:moviePath];
+[_slideshow addMediaFromResources:@[@"test_1.jpeg", @"test_2.jpeg", videoURL, @"test_3.jpeg"]]; // Add images or videos from resources
 [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
 ```
 
@@ -39,6 +41,8 @@ _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
 - (void) addImage:(UIImage *) image;
+- (void) addVideoWithURL:(NSURL *) videoURL;
+- (void) addImagesFromResources:(NSArray *) names;
 ```
 
 ###Use of a slideshow
