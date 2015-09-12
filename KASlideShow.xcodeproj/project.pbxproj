@@ -23,6 +23,10 @@
 		82AA9BA516B012DD00B95D4E /* test_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9BA216B012DD00B95D4E /* test_1.jpeg */; };
 		82AA9BA616B012DD00B95D4E /* test_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9BA316B012DD00B95D4E /* test_2.jpeg */; };
 		82AA9BA716B012DD00B95D4E /* test_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9BA416B012DD00B95D4E /* test_3.jpeg */; };
+		8EB2EA721BA3AA0C00DE7E42 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB2EA711BA3AA0C00DE7E42 /* MediaPlayer.framework */; };
+		8EB2EA771BA3B5A200DE7E42 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB2EA761BA3B5A200DE7E42 /* AVFoundation.framework */; };
+		8EB2EA791BA3B6D600DE7E42 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EB2EA781BA3B6D600DE7E42 /* CoreMedia.framework */; };
+		8EB2EA7B1BA3B8C800DE7E42 /* Video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8EB2EA7A1BA3B8C800DE7E42 /* Video.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		82AA9BA216B012DD00B95D4E /* test_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_1.jpeg; path = KASlideShow/Demo/test_1.jpeg; sourceTree = "<group>"; };
 		82AA9BA316B012DD00B95D4E /* test_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_2.jpeg; path = KASlideShow/Demo/test_2.jpeg; sourceTree = "<group>"; };
 		82AA9BA416B012DD00B95D4E /* test_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_3.jpeg; path = KASlideShow/Demo/test_3.jpeg; sourceTree = "<group>"; };
+		8EB2EA711BA3AA0C00DE7E42 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		8EB2EA761BA3B5A200DE7E42 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8EB2EA781BA3B6D600DE7E42 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8EB2EA7A1BA3B8C800DE7E42 /* Video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = Video.mp4; path = KASlideShow/Demo/Video.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB2EA791BA3B6D600DE7E42 /* CoreMedia.framework in Frameworks */,
+				8EB2EA771BA3B5A200DE7E42 /* AVFoundation.framework in Frameworks */,
+				8EB2EA721BA3AA0C00DE7E42 /* MediaPlayer.framework in Frameworks */,
 				82AA9B5716B00F9700B95D4E /* UIKit.framework in Frameworks */,
 				82AA9B5916B00F9700B95D4E /* Foundation.framework in Frameworks */,
 				82AA9B5B16B00F9700B95D4E /* CoreGraphics.framework in Frameworks */,
@@ -84,6 +95,9 @@
 		82AA9B5516B00F9700B95D4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EB2EA781BA3B6D600DE7E42 /* CoreMedia.framework */,
+				8EB2EA761BA3B5A200DE7E42 /* AVFoundation.framework */,
+				8EB2EA711BA3AA0C00DE7E42 /* MediaPlayer.framework */,
 				82AA9B5616B00F9700B95D4E /* UIKit.framework */,
 				82AA9B5816B00F9700B95D4E /* Foundation.framework */,
 				82AA9B5A16B00F9700B95D4E /* CoreGraphics.framework */,
@@ -121,6 +135,7 @@
 				82AA9B8216B011A600B95D4E /* AppDelegate.h */,
 				82AA9B8316B011A600B95D4E /* AppDelegate.m */,
 				82AA9BA816B012FB00B95D4E /* Controllers */,
+				8EB2EA731BA3AAD100DE7E42 /* Videos */,
 				82AA9B9B16B012A500B95D4E /* Images */,
 				82AA9B5D16B00F9700B95D4E /* Supporting Files */,
 			);
@@ -145,6 +160,14 @@
 				82AA9B7116B00F9700B95D4E /* ViewController.xib */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8EB2EA731BA3AAD100DE7E42 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				8EB2EA7A1BA3B8C800DE7E42 /* Video.mp4 */,
+			);
+			name = Videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +223,7 @@
 			files = (
 				82AA9B6116B00F9700B95D4E /* InfoPlist.strings in Resources */,
 				82AA9B7316B00F9700B95D4E /* ViewController.xib in Resources */,
+				8EB2EA7B1BA3B8C800DE7E42 /* Video.mp4 in Resources */,
 				82AA9B8F16B011B800B95D4E /* Default-568h@2x.png in Resources */,
 				82AA9B9016B011B800B95D4E /* Default.png in Resources */,
 				82AA9B9116B011B800B95D4E /* Default@2x.png in Resources */,
