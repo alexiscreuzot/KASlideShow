@@ -55,11 +55,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-	
-	// Do not reposition the embedded imageViews.
-	frame.origin.x = 0;
-	frame.origin.y = 0;
-	
+    
+    // Do not reposition the embedded imageViews.
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    
     _topImageView.frame = frame;
     _bottomImageView.frame = frame;
 }
@@ -337,6 +337,18 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 - (KASlideShowState)state
 {
     return !_doStop;
+}
+
+- (void)reload {
+    if (self.delegate == nil) return;
+    
+    [self.images removeAllObjects];
+    
+    for (int i=0; i<[self.delegate numberOfImagesForSlideShow:self]; i++) {
+        UIImage *image = [self.delegate slideShow:self imageForIndex:i];
+        [self.images addObject:image];
+    }
+    _topImageView.image = [self.images firstObject];
 }
 
 #pragma mark - Gesture Recognizers initializers
