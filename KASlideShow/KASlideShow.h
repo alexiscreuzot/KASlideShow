@@ -15,6 +15,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import <UIKit/UIKit.h>
+
 typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
     KASlideShowTransitionFade,
     KASlideShowTransitionSlide
@@ -39,8 +41,8 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 @class KASlideShow;
 @protocol KASlideShowDelegate <NSObject>
 @optional
-- (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
-- (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidShowNext:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidShowPrevious:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
 @end
@@ -64,10 +66,16 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
+<<<<<<< HEAD
 - (void) removeAllImages;
+=======
+- (void) emptyAndAddImages:(NSArray *)images;
+>>>>>>> kirualex/master
 - (void) setImagesDataSource:(NSMutableArray *)array;
 - (void) addGesture:(KASlideShowGestureType)gestureType;
+- (void) removeGestures;
 - (void) addImage:(UIImage *) image;
+
 - (void) start;
 - (void) stop;
 - (void) previous;

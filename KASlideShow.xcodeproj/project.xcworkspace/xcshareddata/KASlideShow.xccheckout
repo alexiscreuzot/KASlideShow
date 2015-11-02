@@ -10,29 +10,29 @@
 	<string>KASlideShow</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</key>
-		<string>ssh://github.com/kirualex/KASlideShow.git</string>
+		<key>6ECC6CCCFBB3C78414CE69B21BF46D6819DD1501</key>
+		<string>github.com:kirualex/KASlideShow.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>KASlideShow.xcodeproj/project.xcworkspace</string>
+	<string>KASlideShow.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</key>
+		<key>6ECC6CCCFBB3C78414CE69B21BF46D6819DD1501</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/kirualex/KASlideShow.git</string>
+	<string>github.com:kirualex/KASlideShow.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</string>
+	<string>6ECC6CCCFBB3C78414CE69B21BF46D6819DD1501</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E9DA7757-0872-4CC7-87D8-FEE06190F7C1</string>
+			<string>6ECC6CCCFBB3C78414CE69B21BF46D6819DD1501</string>
 			<key>IDESourceControlWCCName</key>
 			<string>KASlideShow</string>
 		</dict>

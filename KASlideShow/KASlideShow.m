@@ -29,7 +29,6 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 @property (atomic) BOOL isAnimating;
 @property (strong,nonatomic) UIImageView * topImageView;
 @property (strong,nonatomic) UIImageView * bottomImageView;
-
 @end
 
 @implementation KASlideShow
@@ -56,7 +55,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    
+	
+	// Do not reposition the embedded imageViews.
+	frame.origin.x = 0;
+	frame.origin.y = 0;
+	
     _topImageView.frame = frame;
     _bottomImageView.frame = frame;
 }
@@ -64,8 +67,14 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _topImageView.frame = self.bounds;
-    _bottomImageView.frame = self.bounds;
+    
+    if (!CGRectEqualToRect(self.bounds, _topImageView.bounds)) {
+        _topImageView.frame = self.bounds;
+    }
+    
+    if (!CGRectEqualToRect(self.bounds, _bottomImageView.bounds)) {
+        _bottomImageView.frame = self.bounds;
+    }
 }
 
 - (void) setDefaultValues
@@ -88,7 +97,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self setImagesContentMode:UIViewContentModeScaleAspectFit];
     
     [self addSubview:_bottomImageView];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_bottomImageView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_bottomImageView}]];
+    
     [self addSubview:_topImageView];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
 }
 
 - (void) setImagesContentMode:(UIViewContentMode)mode
@@ -119,6 +133,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         default:
             break;
     }
+}
+
+- (void) removeGestures
+{
+    self.gestureRecognizers = nil;
 }
 
 - (void) addImagesFromResources:(NSArray *) names
@@ -152,10 +171,20 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addImagesFromResources:names];
 }
 
+<<<<<<< HEAD
 - (void) removeAllImages {
     _topImageView.image = nil;
     _bottomImageView.image = nil;
     [self.images removeAllObjects];
+=======
+- (void) emptyAndAddImages:(NSArray *)images
+{
+    [self.images removeAllObjects];
+    _currentIndex = 0;
+    for (UIImage *image in images){
+        [self addImage:image];
+    }
+>>>>>>> kirualex/master
 }
 
 - (void) start
@@ -199,12 +228,14 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidNext:)]){
-            [delegate kaSlideShowDidNext:self];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidShowNext:)]){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [delegate kaSlideShowDidShowNext:self];
+            });
         }
     }
 }
-
 
 - (void) previous
 {
@@ -240,8 +271,11 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
         
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidPrevious:)]){
-            [delegate kaSlideShowDidPrevious:self];
+        if([delegate respondsToSelector:@selector(kaSlideShowDidShowPrevious:)]){
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [delegate kaSlideShowDidShowPrevious:self];
+            });
         }
     }
     
@@ -324,12 +358,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 #pragma mark - Gesture Recognizers initializers
 - (void) addGestureTap
 {
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                                          
-                                                          initWithTarget:self action:@selector(handleSingleTap:)];
-    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    
     [self addGestureRecognizer:singleTapGestureRecognizer];
 }
 
@@ -351,12 +381,9 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     UITapGestureRecognizer *gesture = (UITapGestureRecognizer *)sender;
     CGPoint pointTouched = [gesture locationInView:self.topImageView];
     
-    if (pointTouched.x <= self.topImageView.center.x)
-    {
+    if (pointTouched.x <= self.topImageView.center.x){
         [self previous];
-    }
-    else
-    {
+    }else {
         [self next];
     }
 }

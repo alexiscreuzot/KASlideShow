@@ -2,7 +2,7 @@
 
 Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.
 
-![Demo screenshot](http://i.imgur.com/I1164Xc.gif)
+![Demo screenshot](http://fat.gfycat.com/MediocreVillainousBoa.gif)
 
 ##Install
 
@@ -23,44 +23,56 @@ add this line to your Podfile :
 
 ###Creation of a slideshow
 
-    _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
-    [_slideshow setDelay:3]; // Delay between transitions
-    [_slideshow setTransitionDuration:1]; // Transition duration
-    [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
-    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+```objective-c
+_slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
+[_slideshow setDelay:3]; // Delay between transitions
+[_slideshow setTransitionDuration:1]; // Transition duration
+[_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
+[_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
+[_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+[_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+```
 
 ###Other methods to add images
 
-   - (void) addImagesFromResources:(NSArray *) names;
-   - (void) emptyAndAddImagesFromResources:(NSArray *)names;
-   - (void) addImage:(UIImage *) image;
+```objective-c
+- (void) addImagesFromResources:(NSArray *) names;
+- (void) emptyAndAddImagesFromResources:(NSArray *)names;
+- (void) addImage:(UIImage *) image;
+```
 
 ###Use of a slideshow
 
-    [_slideshow next]; // Go to the next image
-    [_slideshow previous]; // Got to the previous image
+```objective-c
+[_slideshow next]; // Go to the next image
+[_slideshow previous]; // Got to the previous image
 
-    [_slideshow start]; // Start automatic slideshow
-    [_slideshow stop]; // Stop automatic slideshow
+[_slideshow start]; // Start automatic slideshow
+[_slideshow stop]; // Stop automatic slideshow
+```
+
+### Gestures   
 
 ### KASlideShowDataSource
 
 You can also implement this protocol to use the slideshow in a more memory efficient way.
 
-    - (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
-    
-    
+```objective-c
+- (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
+```
+
 ### KASlideShowDelegate
 
 Don't forget to set the delegate !
 
-    _slideshow.delegate = self;
-
+```objective-c
+_slideshow.delegate = self;
+```
 ### Delegate
 
-    - (void) kaSlideShowDidNext:(KASlideShow *) slideShow;
-    - (void) kaSlideShowDidPrevious:(KASlideShow *) slideShow;
-    - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
-    - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
-
+```objective-c
+- (void) kaSlideShowDidShowNext:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidShowPrevious:(KASlideShow *) slideShow;
+- (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
+- (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
+```
