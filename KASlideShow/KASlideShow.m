@@ -171,20 +171,19 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addImagesFromResources:names];
 }
 
-<<<<<<< HEAD
-- (void) removeAllImages {
+- (void) emptyAllImages {
     _topImageView.image = nil;
     _bottomImageView.image = nil;
     [self.images removeAllObjects];
-=======
-- (void) emptyAndAddImages:(NSArray *)images
+}
+    
+- (void) emptyAndAddImages:(NSArray *)imagesArray
 {
     [self.images removeAllObjects];
     _currentIndex = 0;
-    for (UIImage *image in images){
+    for (UIImage *image in imagesArray){
         [self addImage:image];
     }
->>>>>>> kirualex/master
 }
 
 - (void) start
