@@ -103,7 +103,21 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addSubview:_topImageView];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
+
+
+
+
+    //  Log _topImageView.backgroundColor, value for -isOpaque here.
+
+
+    _topImageView.backgroundColor = [UIColor whiteColor];
+
 }
+
+
+
+
+
 
 - (void) setImagesContentMode:(UIViewContentMode)mode
 {
@@ -140,6 +154,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     self.gestureRecognizers = nil;
 }
 
+//  Should be a set (array) of three images
+//  ^^ confirmed
 - (void) addImagesFromResources:(NSArray *) names
 {
     for(NSString * name in names){
@@ -147,11 +163,13 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     }
 }
 
+
 - (void) setImagesDataSource:(NSMutableArray *)array {
     self.images = array;
     
     _topImageView.image = [array firstObject];
 }
+
 
 - (void) addImage:(UIImage*) image
 {
@@ -163,6 +181,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         _bottomImageView.image = image;
     }
 }
+
+
+
+
+
+
 
 - (void) emptyAndAddImagesFromResources:(NSArray *)names
 {
