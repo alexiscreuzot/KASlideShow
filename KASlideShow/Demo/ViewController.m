@@ -37,42 +37,15 @@
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
 
-
-
-
-
-
-
     [self setupSlideshow];
 }
 
 
-//  jdrobert mentioned that his images were transparent--I'll see if I can modify these images' alphas prior to
-//  passing them to -addImagesFromResources:
-
-
-
-//  Scratch that, I think I'll just set the images' alphas when they are set on their imageViews
-//  My suspicion is that the imageViews in this instance have clear backgrounds, or are not opaque
 - (void)setupSlideshow {
-
-
-
-
-    [_slideshow addImagesFromResources:@[
-
-                                         @"test_1.png",
-
-
-                                         @"test_2.jpeg", @"test_3.jpeg"]];
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg", @"test_2.jpeg",
+                                                          @"test_3.jpeg"]];
     [self.slideshow addGesture:KASlideShowGestureSwipe];
-//    [self.slideshow setTransitionType:KASlideShowTransitionSlide];
 }
-
-
-
-
-
 
 
 #pragma mark - KASlideShow delegate

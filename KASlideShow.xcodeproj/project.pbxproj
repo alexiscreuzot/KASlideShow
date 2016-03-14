@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51085CAB1C8F31B800F29817 /* test_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 51085CAA1C8F31B800F29817 /* test_1.png */; };
+		51CC1F051C97261A000F6A53 /* test_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 51CC1F041C97261A000F6A53 /* test_1.jpeg */; };
 		82AA9B5716B00F9700B95D4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5616B00F9700B95D4E /* UIKit.framework */; };
 		82AA9B5916B00F9700B95D4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5816B00F9700B95D4E /* Foundation.framework */; };
 		82AA9B5B16B00F9700B95D4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5A16B00F9700B95D4E /* CoreGraphics.framework */; };
@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		51085CAA1C8F31B800F29817 /* test_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test_1.png; path = KASlideShow/Demo/test_1.png; sourceTree = "<group>"; };
+		51CC1F041C97261A000F6A53 /* test_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpeg; sourceTree = "<group>"; };
 		82AA9B5216B00F9700B95D4E /* KASlideShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KASlideShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82AA9B5616B00F9700B95D4E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82AA9B5816B00F9700B95D4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -130,7 +130,7 @@
 		82AA9B9B16B012A500B95D4E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				51085CAA1C8F31B800F29817 /* test_1.png */,
+				51CC1F041C97261A000F6A53 /* test_1.jpeg */,
 				82AA9BA316B012DD00B95D4E /* test_2.jpeg */,
 				82AA9BA416B012DD00B95D4E /* test_3.jpeg */,
 			);
@@ -201,8 +201,8 @@
 				82AA9B6116B00F9700B95D4E /* InfoPlist.strings in Resources */,
 				82AA9B7316B00F9700B95D4E /* ViewController.xib in Resources */,
 				82AA9B8F16B011B800B95D4E /* Default-568h@2x.png in Resources */,
-				51085CAB1C8F31B800F29817 /* test_1.png in Resources */,
 				82AA9B9016B011B800B95D4E /* Default.png in Resources */,
+				51CC1F051C97261A000F6A53 /* test_1.jpeg in Resources */,
 				82AA9B9116B011B800B95D4E /* Default@2x.png in Resources */,
 				82AA9B9216B011B800B95D4E /* KASlideShow-Info.plist in Resources */,
 				82AA9BA616B012DD00B95D4E /* test_2.jpeg in Resources */,
