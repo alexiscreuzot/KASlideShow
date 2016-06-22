@@ -66,8 +66,11 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 @property  (strong,nonatomic) NSMutableArray * images;
 @property  (readonly, nonatomic) KASlideShowState state;
 
+- (UIImage*)imageForPosition:(KASlideShowPosition)position;
+
 - (void) addImagesFromResources:(NSArray *) names;
 - (void) emptyAndAddImagesFromResources:(NSArray *)names;
+- (void) emptyAllImages;
 - (void) emptyAndAddImages:(NSArray *)images;
 - (void) setImagesDataSource:(NSMutableArray *)array;
 - (void) addGesture:(KASlideShowGestureType)gestureType;

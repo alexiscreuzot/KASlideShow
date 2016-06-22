@@ -171,11 +171,17 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addImagesFromResources:names];
 }
 
-- (void) emptyAndAddImages:(NSArray *)images
+- (void) emptyAllImages {
+    _topImageView.image = nil;
+    _bottomImageView.image = nil;
+    [self.images removeAllObjects];
+}
+    
+- (void) emptyAndAddImages:(NSArray *)imagesArray
 {
     [self.images removeAllObjects];
     _currentIndex = 0;
-    for (UIImage *image in images){
+    for (UIImage *image in imagesArray){
         [self addImage:image];
     }
 }
@@ -197,10 +203,15 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             _topImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionTop];
             _bottomImageView.image = [self.dataSource slideShow:self imageForPosition:KASlideShowPositionBottom];
         } else {
-            NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
-            _topImageView.image = self.images[_currentIndex];
-            _bottomImageView.image = self.images[nextIndex];
-            _currentIndex = nextIndex;
+            @try {
+                NSUInteger nextIndex = (_currentIndex+1)%[self.images count];
+                _topImageView.image = self.images[_currentIndex];
+                _bottomImageView.image = self.images[nextIndex];
+                _currentIndex = nextIndex;
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Exception occurred adding image to slide show: %@", exception.name);
+            }
         }
         
         // Animate
@@ -267,6 +278,10 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
     }
     
+}
+
+- (UIImage*) imageForPosition:(KASlideShowPosition)position {
+    return (position == KASlideShowPositionTop) ? _topImageView.image : _bottomImageView.image;
 }
 
 - (void) animateFade
