@@ -45,6 +45,8 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 - (void) kaSlideShowDidShowPrevious:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
 - (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidSwipeLeft:(KASlideShow *) slideShow;
+- (void) kaSlideShowDidSwipeRight:(KASlideShow *) slideShow;
 @end
 
 @protocol KASlideShowDataSource <NSObject>

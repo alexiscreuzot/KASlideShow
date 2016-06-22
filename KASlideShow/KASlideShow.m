@@ -382,10 +382,16 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
     {
         [self next];
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowDidSwipeLeft:)]) {
+            [self.delegate kaSlideShowDidSwipeLeft:self];
+        }
     }
     else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
     {
         [self previous];
+        if ([self.delegate respondsToSelector:@selector(kaSlideShowDidSwipeRight:)]) {
+            [self.delegate kaSlideShowDidSwipeRight:self];
+        }
     }
     
     self.transitionDuration = oldTransitionDuration;
