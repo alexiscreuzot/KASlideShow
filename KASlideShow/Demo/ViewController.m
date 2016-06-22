@@ -19,6 +19,8 @@
 
 @implementation ViewController
 
+#pragma mark Initial setup
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,10 +36,17 @@
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
-    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
-    
+
+    [self setupSlideshow];
 }
+
+
+- (void)setupSlideshow {
+    [_slideshow addImagesFromResources:@[@"test_1.jpeg", @"test_2.jpeg",
+                                                          @"test_3.jpeg"]];
+    [self.slideshow addGesture:KASlideShowGestureSwipe];
+}
+
 
 #pragma mark - KASlideShow delegate
 

@@ -77,6 +77,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     }
 }
 
+
 - (void) setDefaultValues
 {
     self.clipsToBounds = YES;
@@ -103,7 +104,10 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addSubview:_topImageView];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
+
+    _topImageView.backgroundColor = [UIColor whiteColor];
 }
+
 
 - (void) setImagesContentMode:(UIViewContentMode)mode
 {
@@ -140,12 +144,22 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     self.gestureRecognizers = nil;
 }
 
+//  Should be a set (array) of three images
+//  ^^ confirmed
 - (void) addImagesFromResources:(NSArray *) names
 {
     for(NSString * name in names){
         [self addImage:[UIImage imageNamed:name]];
     }
+    if (names.count < 1) {
+        /*  
+            This will be called when there are no
+            images to show. Allows display of default view config. 
+        */
+        _topImageView.backgroundColor = [UIColor clearColor];
+    }
 }
+
 
 - (void) setImagesDataSource:(NSMutableArray *)array {
     self.images = array;
@@ -153,16 +167,20 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     _topImageView.image = [array firstObject];
 }
 
+
 - (void) addImage:(UIImage*) image
 {
+    //  Check for 'image'
     [self.images addObject:image];
     
     if([self.images count] == 1){
         _topImageView.image = image;
-    }else if([self.images count] == 2){
+    }
+    else if([self.images count] == 2){
         _bottomImageView.image = image;
     }
 }
+
 
 - (void) emptyAndAddImagesFromResources:(NSArray *)names
 {
