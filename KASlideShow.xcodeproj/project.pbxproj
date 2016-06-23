@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51CC1F051C97261A000F6A53 /* test_1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 51CC1F041C97261A000F6A53 /* test_1.jpeg */; };
 		82AA9B5716B00F9700B95D4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5616B00F9700B95D4E /* UIKit.framework */; };
 		82AA9B5916B00F9700B95D4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5816B00F9700B95D4E /* Foundation.framework */; };
 		82AA9B5B16B00F9700B95D4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AA9B5A16B00F9700B95D4E /* CoreGraphics.framework */; };
@@ -16,17 +15,16 @@
 		82AA9B8F16B011B800B95D4E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9B8916B011B800B95D4E /* Default-568h@2x.png */; };
 		82AA9B9016B011B800B95D4E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9B8A16B011B800B95D4E /* Default.png */; };
 		82AA9B9116B011B800B95D4E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9B8B16B011B800B95D4E /* Default@2x.png */; };
-		82AA9B9216B011B800B95D4E /* KASlideShow-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9B8C16B011B800B95D4E /* KASlideShow-Info.plist */; };
 		82AA9B9716B011F700B95D4E /* KASlideShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B9616B011F700B95D4E /* KASlideShow.m */; };
 		82AA9B9816B0120300B95D4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8E16B011B800B95D4E /* main.m */; };
 		82AA9B9916B0120C00B95D4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8316B011A600B95D4E /* AppDelegate.m */; };
 		82AA9B9A16B0120C00B95D4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8516B011A600B95D4E /* ViewController.m */; };
-		82AA9BA616B012DD00B95D4E /* test_2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9BA316B012DD00B95D4E /* test_2.jpeg */; };
-		82AA9BA716B012DD00B95D4E /* test_3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 82AA9BA416B012DD00B95D4E /* test_3.jpeg */; };
+		FA543C651D1BDC5B00BDDFDC /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C621D1BDC5B00BDDFDC /* test_1.jpg */; };
+		FA543C661D1BDC5B00BDDFDC /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C631D1BDC5B00BDDFDC /* test_2.jpg */; };
+		FA543C671D1BDC5B00BDDFDC /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C641D1BDC5B00BDDFDC /* test_3.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		51CC1F041C97261A000F6A53 /* test_1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpeg; sourceTree = "<group>"; };
 		82AA9B5216B00F9700B95D4E /* KASlideShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KASlideShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82AA9B5616B00F9700B95D4E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82AA9B5816B00F9700B95D4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -45,8 +43,9 @@
 		82AA9B8E16B011B800B95D4E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Demo/main.m; sourceTree = "<group>"; };
 		82AA9B9516B011F700B95D4E /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
 		82AA9B9616B011F700B95D4E /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
-		82AA9BA316B012DD00B95D4E /* test_2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_2.jpeg; path = KASlideShow/Demo/test_2.jpeg; sourceTree = "<group>"; };
-		82AA9BA416B012DD00B95D4E /* test_3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test_3.jpeg; path = KASlideShow/Demo/test_3.jpeg; sourceTree = "<group>"; };
+		FA543C621D1BDC5B00BDDFDC /* test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpg; sourceTree = "<group>"; };
+		FA543C631D1BDC5B00BDDFDC /* test_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_2.jpg; sourceTree = "<group>"; };
+		FA543C641D1BDC5B00BDDFDC /* test_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_3.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,9 +129,9 @@
 		82AA9B9B16B012A500B95D4E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				51CC1F041C97261A000F6A53 /* test_1.jpeg */,
-				82AA9BA316B012DD00B95D4E /* test_2.jpeg */,
-				82AA9BA416B012DD00B95D4E /* test_3.jpeg */,
+				FA543C621D1BDC5B00BDDFDC /* test_1.jpg */,
+				FA543C631D1BDC5B00BDDFDC /* test_2.jpg */,
+				FA543C641D1BDC5B00BDDFDC /* test_3.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -173,7 +172,7 @@
 		82AA9B4916B00F9700B95D4E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Alexis Creuzot";
 			};
 			buildConfigurationList = 82AA9B4C16B00F9700B95D4E /* Build configuration list for PBXProject "KASlideShow" */;
@@ -198,15 +197,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA543C661D1BDC5B00BDDFDC /* test_2.jpg in Resources */,
 				82AA9B6116B00F9700B95D4E /* InfoPlist.strings in Resources */,
 				82AA9B7316B00F9700B95D4E /* ViewController.xib in Resources */,
+				FA543C671D1BDC5B00BDDFDC /* test_3.jpg in Resources */,
 				82AA9B8F16B011B800B95D4E /* Default-568h@2x.png in Resources */,
 				82AA9B9016B011B800B95D4E /* Default.png in Resources */,
-				51CC1F051C97261A000F6A53 /* test_1.jpeg in Resources */,
 				82AA9B9116B011B800B95D4E /* Default@2x.png in Resources */,
-				82AA9B9216B011B800B95D4E /* KASlideShow-Info.plist in Resources */,
-				82AA9BA616B012DD00B95D4E /* test_2.jpeg in Resources */,
-				82AA9BA716B012DD00B95D4E /* test_3.jpeg in Resources */,
+				FA543C651D1BDC5B00BDDFDC /* test_1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +256,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -303,6 +302,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KASlideShow/Demo/KASlideShow-Prefix.pch";
 				INFOPLIST_FILE = "KASlideShow/Demo/KASlideShow-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirualex.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -314,6 +314,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KASlideShow/Demo/KASlideShow-Prefix.pch";
 				INFOPLIST_FILE = "KASlideShow/Demo/KASlideShow-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kirualex.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

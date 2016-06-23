@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
@@ -10,6 +10,7 @@
                 <outlet property="nextButton" destination="48" id="PRj-Uq-o4Z"/>
                 <outlet property="previousButton" destination="47" id="xeK-pS-CW5"/>
                 <outlet property="slideshow" destination="45" id="46"/>
+                <outlet property="speedSlider" destination="PJs-QE-8dW" id="SO2-PG-K6N"/>
                 <outlet property="startStopButton" destination="36" id="OPy-fQ-Lce"/>
                 <outlet property="view" destination="6" id="7"/>
             </connections>
@@ -19,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36">
-                    <rect key="frame" x="275" y="327" width="50" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36">
+                    <rect key="frame" x="275" y="302" width="50" height="50"/>
                     <color key="backgroundColor" red="0.058823529411764705" green="0.47450980392156861" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="867-JH-Zdk"/>
@@ -35,8 +36,8 @@
                         <action selector="startStrop:" destination="-1" eventType="touchUpInside" id="39"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47">
-                    <rect key="frame" x="17" y="327" width="50" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47">
+                    <rect key="frame" x="17" y="302" width="50" height="50"/>
                     <color key="backgroundColor" red="0.058823529411764705" green="0.47450980392156861" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="UFC-l1-A0h"/>
@@ -51,8 +52,8 @@
                         <action selector="previous:" destination="-1" eventType="touchUpInside" id="49"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48">
-                    <rect key="frame" x="530" y="327" width="50" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48">
+                    <rect key="frame" x="530" y="302" width="50" height="50"/>
                     <color key="backgroundColor" red="0.058823529411764705" green="0.47450980392156861" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="aLw-jy-89A"/>
@@ -68,7 +69,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="45" customClass="KASlideShow">
-                    <rect key="frame" x="140" y="113" width="320" height="184"/>
+                    <rect key="frame" x="140" y="98" width="320" height="184"/>
                     <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="320" id="WFx-Ye-n9c"/>
@@ -76,31 +77,44 @@
                     </constraints>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tRI-1m-TZn">
-                    <rect key="frame" x="256" y="50" width="89" height="29"/>
+                    <rect key="frame" x="179" y="50" width="242" height="29"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="JBv-Zj-a61"/>
                     </constraints>
                     <segments>
                         <segment title="Fade"/>
-                        <segment title="Slide"/>
+                        <segment title="Slide Horiz"/>
+                        <segment title="Slide Vert"/>
                     </segments>
                     <connections>
                         <action selector="switchType:" destination="-1" eventType="valueChanged" id="j1I-SO-N31"/>
                     </connections>
                 </segmentedControl>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="PJs-QE-8dW">
+                    <rect key="frame" x="204" y="375" width="200" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="LTu-oc-jeE"/>
+                        <constraint firstAttribute="height" constant="30" id="mxf-0f-OMK"/>
+                    </constraints>
+                    <connections>
+                        <action selector="selectChangeValue:" destination="-1" eventType="valueChanged" id="vK9-Ff-MHy"/>
+                    </connections>
+                </slider>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="47" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="30" id="0XP-oM-XdP"/>
+                <constraint firstItem="47" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="0XP-oM-XdP"/>
                 <constraint firstAttribute="centerX" secondItem="45" secondAttribute="centerX" id="BMD-1v-jXu"/>
                 <constraint firstItem="47" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="17" id="BVx-dE-DsQ"/>
+                <constraint firstAttribute="centerX" secondItem="PJs-QE-8dW" secondAttribute="centerX" constant="-4" id="FtK-cU-QhF"/>
                 <constraint firstAttribute="centerX" secondItem="tRI-1m-TZn" secondAttribute="centerX" id="N5v-0g-i4Z"/>
                 <constraint firstAttribute="centerX" secondItem="36" secondAttribute="centerX" id="Wop-Fe-hUZ"/>
                 <constraint firstItem="tRI-1m-TZn" firstAttribute="top" secondItem="6" secondAttribute="top" constant="50" id="bgD-WH-b5T"/>
+                <constraint firstItem="PJs-QE-8dW" firstAttribute="top" secondItem="36" secondAttribute="bottom" constant="23" id="h09-Mf-MZQ"/>
                 <constraint firstAttribute="trailing" secondItem="48" secondAttribute="trailing" constant="20" id="oYW-hz-ldp"/>
-                <constraint firstItem="48" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="30" id="p5Q-hB-Wja"/>
-                <constraint firstItem="36" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="30" id="rSY-XU-0EG"/>
-                <constraint firstItem="45" firstAttribute="top" secondItem="tRI-1m-TZn" secondAttribute="bottom" constant="35" id="wc8-5q-iae"/>
+                <constraint firstItem="48" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="p5Q-hB-Wja"/>
+                <constraint firstItem="36" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="rSY-XU-0EG"/>
+                <constraint firstItem="45" firstAttribute="top" secondItem="tRI-1m-TZn" secondAttribute="bottom" constant="20" id="wc8-5q-iae"/>
                 <constraint firstItem="45" firstAttribute="top" secondItem="6" secondAttribute="top" constant="100" id="xsa-xt-mhi"/>
             </constraints>
             <variation key="default">

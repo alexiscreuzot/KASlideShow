@@ -19,7 +19,8 @@
 
 typedef NS_ENUM(NSInteger, KASlideShowTransitionType) {
     KASlideShowTransitionFade,
-    KASlideShowTransitionSlide
+    KASlideShowTransitionSlideVertical,
+    KASlideShowTransitionSlideHorizontal
 };
 
 typedef NS_ENUM(NSInteger, KASlideShowGestureType) {

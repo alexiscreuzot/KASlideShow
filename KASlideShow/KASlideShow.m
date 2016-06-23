@@ -238,8 +238,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                 [self animateFade];
                 break;
                 
-            case KASlideShowTransitionSlide:
-                [self animateSlide:KASlideShowSlideModeForward];
+            case KASlideShowTransitionSlideHorizontal:
+                [self animateSlideHorizontal:KASlideShowSlideModeForward];
+                break;
+                
+            case KASlideShowTransitionSlideVertical:
+                [self animateSlideVertical:KASlideShowSlideModeForward];
                 break;
                 
         }
@@ -282,8 +286,12 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                 [self animateFade];
                 break;
                 
-            case KASlideShowTransitionSlide:
-                [self animateSlide:KASlideShowSlideModeBackward];
+            case KASlideShowTransitionSlideHorizontal:
+                [self animateSlideHorizontal:KASlideShowSlideModeBackward];
+                break;
+                
+            case KASlideShowTransitionSlideVertical:
+                [self animateSlideVertical:KASlideShowSlideModeBackward];
                 break;
         }
         
@@ -324,7 +332,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      }];
 }
 
-- (void) animateSlide:(KASlideShowSlideMode) mode
+- (void) animateSlideHorizontal:(KASlideShowSlideMode) mode
 {
     _isAnimating = YES;
     
@@ -360,6 +368,41 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      }];
 }
 
+- (void) animateSlideVertical:(KASlideShowSlideMode) mode
+{
+    _isAnimating = YES;
+    
+    if(mode == KASlideShowSlideModeBackward){
+        _bottomImageView.transform = CGAffineTransformMakeTranslation(0,- _bottomImageView.frame.size.height);
+    }else if(mode == KASlideShowSlideModeForward){
+        _bottomImageView.transform = CGAffineTransformMakeTranslation(0,_bottomImageView.frame.size.height);
+    }
+    
+    
+    [UIView animateWithDuration:transitionDuration
+                     animations:^{
+                         
+                         if(mode == KASlideShowSlideModeBackward){
+                             _topImageView.transform = CGAffineTransformMakeTranslation(0, _topImageView.frame.size.height);
+                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                         }else if(mode == KASlideShowSlideModeForward){
+                             _topImageView.transform = CGAffineTransformMakeTranslation(0, - _topImageView.frame.size.height);
+                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                         }
+                     }
+                     completion:^(BOOL finished){
+                         
+                         _topImageView.image = _bottomImageView.image;
+                         _topImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                         
+                         _isAnimating = NO;
+                         
+                         if(! _doStop){
+                             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
+                             [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+                         }
+                     }];
+}
 
 - (void) stop
 {
@@ -382,14 +425,24 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) addGestureSwipe
 {
-    UISwipeGestureRecognizer* swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    if(self.transitionType == KASlideShowTransitionSlideHorizontal){
+        UISwipeGestureRecognizer* swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        UISwipeGestureRecognizer* swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+        
+        [self addGestureRecognizer:swipeLeftGestureRecognizer];
+        [self addGestureRecognizer:swipeRightGestureRecognizer];
+    }else{
+        UISwipeGestureRecognizer* swipeUpGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        swipeUpGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+        UISwipeGestureRecognizer* swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+        
+        [self addGestureRecognizer:swipeUpGestureRecognizer];
+        [self addGestureRecognizer:swipeDownGestureRecognizer];
+    }
     
-    UISwipeGestureRecognizer* swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    
-    [self addGestureRecognizer:swipeLeftGestureRecognizer];
-    [self addGestureRecognizer:swipeRightGestureRecognizer];
 }
 
 #pragma mark - Gesture Recognizers handling
@@ -412,14 +465,16 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     float oldTransitionDuration = self.transitionDuration;
     
     self.transitionDuration = kSwipeTransitionDuration;
-    if (gesture.direction == UISwipeGestureRecognizerDirectionLeft)
+    if (gesture.direction == UISwipeGestureRecognizerDirectionLeft ||
+        gesture.direction == UISwipeGestureRecognizerDirectionUp)
     {
         [self next];
         if ([self.delegate respondsToSelector:@selector(kaSlideShowDidSwipeLeft:)]) {
             [self.delegate kaSlideShowDidSwipeLeft:self];
         }
     }
-    else if (gesture.direction == UISwipeGestureRecognizerDirectionRight)
+    else if (gesture.direction == UISwipeGestureRecognizerDirectionRight ||
+             gesture.direction == UISwipeGestureRecognizerDirectionDown)
     {
         [self previous];
         if ([self.delegate respondsToSelector:@selector(kaSlideShowDidSwipeRight:)]) {

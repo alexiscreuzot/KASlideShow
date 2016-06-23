@@ -12,23 +12,30 @@
 @interface ViewController ()
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
-@property (weak, nonatomic) IBOutlet UIButton *transitionTypeButton;
 @property (weak, nonatomic) IBOutlet UIButton *previousButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+@property (weak, nonatomic) IBOutlet UISlider *speedSlider;
 @end
 
 @implementation ViewController
 
-#pragma mark Initial setup
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+
     // UI
     self.startStopButton.layer.cornerRadius = 25;
-    self.transitionTypeButton.layer.cornerRadius = 25;
     self.previousButton.layer.cornerRadius = 25;
     self.nextButton.layer.cornerRadius = 25;
+    _speedSlider.alpha = .5;
+    [_speedSlider setUserInteractionEnabled:NO];
     
     // KASlideshow
     _slideshow.delegate = self;
@@ -36,17 +43,10 @@
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-
-    [self setupSlideshow];
+    [_slideshow addImagesFromResources:@[@"test_1.jpg",@"test_2.jpg",@"test_3.jpg"]]; // Add images from resources
+    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+    
 }
-
-
-- (void)setupSlideshow {
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg", @"test_2.jpeg",
-                                                          @"test_3.jpeg"]];
-    [self.slideshow addGesture:KASlideShowGestureSwipe];
-}
-
 
 #pragma mark - KASlideShow delegate
 
@@ -72,6 +72,12 @@
 
 #pragma mark - Button methods
 
+- (IBAction)selectChangeValue:(id)sender
+{
+    UISlider * slider = (UISlider *) sender;
+    [_slideshow setDelay:@(slider.value).floatValue/10]; // Delay between transitions
+}
+
 - (IBAction)previous:(id)sender
 {
     [_slideshow previous];
@@ -87,9 +93,13 @@
     UIButton * button = (UIButton *) sender;
     
     if([button.titleLabel.text isEqualToString:@"▸"]){
+        _speedSlider.alpha = 1;
+        [_speedSlider setUserInteractionEnabled:YES];
         [_slideshow start];
         [button setTitle:@"■" forState:UIControlStateNormal];
     }else{
+        _speedSlider.alpha = .5;
+        [_speedSlider setUserInteractionEnabled:NO];
         [_slideshow stop];
         [button setTitle:@"▸" forState:UIControlStateNormal];
     }
@@ -102,8 +112,12 @@
         [_slideshow setTransitionType:KASlideShowTransitionFade];
         _slideshow.gestureRecognizers = nil;
         [_slideshow addGesture:KASlideShowGestureTap];
-    }else{
-        [_slideshow setTransitionType:KASlideShowTransitionSlide];
+    }else if(control.selectedSegmentIndex == 1){
+        [_slideshow setTransitionType:KASlideShowTransitionSlideHorizontal];
+        _slideshow.gestureRecognizers = nil;
+        [_slideshow addGesture:KASlideShowGestureSwipe];
+    }else if(control.selectedSegmentIndex == 2){
+        [_slideshow setTransitionType:KASlideShowTransitionSlideVertical];
         _slideshow.gestureRecognizers = nil;
         [_slideshow addGesture:KASlideShowGestureSwipe];
     }
