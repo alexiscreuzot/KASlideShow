@@ -2,7 +2,7 @@
 
 Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.
 
-![Demo screenshot](http://fat.gfycat.com/MediocreVillainousBoa.gif)
+![Demo screenshot](http://i.imgur.com/xTyqOtO.gif)
 
 ##Install
 
@@ -27,10 +27,18 @@ add this line to your Podfile :
 _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
 [_slideshow setDelay:3]; // Delay between transitions
 [_slideshow setTransitionDuration:1]; // Transition duration
-[_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
+[_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type 
 [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
 [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
 [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+```
+
+#### Multiple transition types available
+
+```
+    KASlideShowTransitionFade
+    KASlideShowTransitionSlideHorizontal
+    KASlideShowTransitionSlideVertical
 ```
 
 ###Other methods to add images
