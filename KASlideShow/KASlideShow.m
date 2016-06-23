@@ -212,6 +212,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) next
 {
+    if (!self.window) return;
+
     if(! _isAnimating && ([self.images count] >1 || self.dataSource)) {
         
         if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowNext:)]) [self.delegate kaSlideShowWillShowNext:self];
@@ -252,7 +254,9 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         if([delegate respondsToSelector:@selector(kaSlideShowDidShowNext:)]){
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [delegate kaSlideShowDidShowNext:self];
+                if (self.window){
+                    [delegate kaSlideShowDidShowNext:self];
+                }
             });
         }
     }
@@ -260,6 +264,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void) previous
 {
+    if (!self.window) return;
+
     if(! _isAnimating && ([self.images count] >1 || self.dataSource)){
         
         if ([self.delegate respondsToSelector:@selector(kaSlideShowWillShowPrevious:)]) [self.delegate kaSlideShowWillShowPrevious:self];
@@ -299,7 +305,9 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         if([delegate respondsToSelector:@selector(kaSlideShowDidShowPrevious:)]){
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [delegate kaSlideShowDidShowPrevious:self];
+                if (self.window){
+                    [delegate kaSlideShowDidShowPrevious:self];
+                }
             });
         }
     }

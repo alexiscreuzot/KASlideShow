@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
+    self.view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1];
 
     // UI
     self.startStopButton.layer.cornerRadius = 25;
