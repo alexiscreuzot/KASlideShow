@@ -1,6 +1,6 @@
 #KASlideShow
 
-Ultra-basic slideshow for iOS (ARC only). Support manual or automatic slideshow, with fade and slide transitions.
+Ultra-basic slideshow for iOS. Support manual or automatic slideshow, with fade and slide transitions.
 
 ![Demo screenshot](http://i.imgur.com/xTyqOtO.gif)
 
