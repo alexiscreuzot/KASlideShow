@@ -1,6 +1,7 @@
 #KASlideShow
 
-Ultra-basic slideshow for iOS. Support manual or automatic slideshow, with fade and slide transitions.
+Slideshow for iOS. Easy to use. Support manual or automatic slideshow, with fade and slide transitions. 
+Support local and remote images.
 
 ![Demo screenshot](http://i.imgur.com/xTyqOtO.gif)
 
@@ -21,32 +22,54 @@ add this line to your Podfile :
 
 ##Usage
 
-###Creation of a slideshow
+###Quick example
 
 ```objective-c
-_slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
-[_slideshow setDelay:3]; // Delay between transitions
-[_slideshow setTransitionDuration:1]; // Transition duration
-[_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type 
-[_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-[_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
-[_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _datasource = @[[UIImage imageNamed:@"test_1.jpg"],
+                    [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
+                    @"test_3.jpg"];
+
+    _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
+    _slideshow.datasource = self;
+    _slideshow.delegate = self;
+    [_slideshow setDelay:3]; // Delay between transitions
+    [_slideshow setTransitionDuration:1]; // Transition duration
+    [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type 
+    [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
+    [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
+}
+
+#pragma mark - KASlideShow datasource
+
+- (NSObject *)slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index
+{
+    return _datasource[index];
+}
+
+- (NSUInteger)slideShowImagesNumber:(KASlideShow *)slideShow
+{
+    return _datasource.count;
+}
+
+#pragma mark - KASlideShow delegate
+
+- (void) slideShowWillShowNext:(KASlideShow *)slideShow
+{
+    NSLog(@"slideShowWillShowNext, index : %@",@(slideShow.currentIndex));
+}
 ```
 
-#### Multiple transition types available
+### KASlideShowDataSource
 
-```
-    KASlideShowTransitionFade
-    KASlideShowTransitionSlideHorizontal
-    KASlideShowTransitionSlideVertical
-```
-
-###Other methods to add images
+You need to implement the datasource to display images.
+KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (URL of remote image).
 
 ```objective-c
-- (void) addImagesFromResources:(NSArray *) names;
-- (void) emptyAndAddImagesFromResources:(NSArray *)names;
-- (void) addImage:(UIImage *) image;
+- (NSObject *) slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index;
+- (NSUInteger) slideShowImagesNumber:(KASlideShow *)slideShow;
 ```
 
 ###Use of a slideshow
@@ -54,33 +77,39 @@ _slideshow = [[KASlideShow alloc] initWithFrame:CGRectMake(0,0,320,250)];
 ```objective-c
 [_slideshow next]; // Go to the next image
 [_slideshow previous]; // Got to the previous image
-
 [_slideshow start]; // Start automatic slideshow
 [_slideshow stop]; // Stop automatic slideshow
 ```
 
-### Gestures   
-
-### KASlideShowDataSource
-
-You can also implement this protocol to use the slideshow in a more memory efficient way.
-
-```objective-c
-- (UIImage *)slideShow:(KASlideShow *)slideShow imageForPosition:(KASlideShowPosition)position;
-```
-
 ### KASlideShowDelegate
 
-Don't forget to set the delegate !
-
 ```objective-c
-_slideshow.delegate = self;
+- (void) slideShowDidShowNext:(KASlideShow *) slideShow;
+- (void) slideShowDidShowPrevious:(KASlideShow *) slideShow;
+- (void) slideShowWillShowNext:(KASlideShow *) slideShow;
+- (void) slideShowWillShowPrevious:(KASlideShow *) slideShow;
+- (void) slideShowDidSwipeLeft:(KASlideShow *) slideShow;
+- (void) slideShowDidSwipeRight:(KASlideShow *) slideShow;
 ```
-### Delegate
 
-```objective-c
-- (void) kaSlideShowDidShowNext:(KASlideShow *) slideShow;
-- (void) kaSlideShowDidShowPrevious:(KASlideShow *) slideShow;
-- (void) kaSlideShowWillShowNext:(KASlideShow *) slideShow;
-- (void) kaSlideShowWillShowPrevious:(KASlideShow *) slideShow;
+#### Transitions
+
+Here are the 3 available types of transitions you can set via `setTransitionType`.
+
+```
+    KASlideShowTransitionFade
+    KASlideShowTransitionSlideHorizontal
+    KASlideShowTransitionSlideVertical
+```
+
+You can furthermore specify the transition duration via `setTransitionDuration`.
+
+#### Gestures
+
+Two types gestures are available to interact with the slideshow via the `addGesture` method. It is possible to add them both.
+
+```
+    KASlideShowTransitionFade
+    KASlideShowTransitionSlideHorizontal
+    KASlideShowTransitionSlideVertical
 ```

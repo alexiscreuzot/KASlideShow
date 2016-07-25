@@ -19,12 +19,14 @@
 		82AA9B9816B0120300B95D4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8E16B011B800B95D4E /* main.m */; };
 		82AA9B9916B0120C00B95D4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8316B011A600B95D4E /* AppDelegate.m */; };
 		82AA9B9A16B0120C00B95D4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8516B011A600B95D4E /* ViewController.m */; };
+		E9DD6D5586217D16C16549A1 /* libPods-KASlideShow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B36406355BF3944A56B1A418 /* libPods-KASlideShow.a */; };
 		FA543C651D1BDC5B00BDDFDC /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C621D1BDC5B00BDDFDC /* test_1.jpg */; };
 		FA543C661D1BDC5B00BDDFDC /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C631D1BDC5B00BDDFDC /* test_2.jpg */; };
 		FA543C671D1BDC5B00BDDFDC /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C641D1BDC5B00BDDFDC /* test_3.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F61F09FD31AE81C5E67E5D4 /* Pods-KASlideShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KASlideShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-KASlideShow/Pods-KASlideShow.release.xcconfig"; sourceTree = "<group>"; };
 		82AA9B5216B00F9700B95D4E /* KASlideShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KASlideShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82AA9B5616B00F9700B95D4E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82AA9B5816B00F9700B95D4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -43,6 +45,8 @@
 		82AA9B8E16B011B800B95D4E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Demo/main.m; sourceTree = "<group>"; };
 		82AA9B9516B011F700B95D4E /* KASlideShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KASlideShow.h; sourceTree = "<group>"; };
 		82AA9B9616B011F700B95D4E /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
+		85F9D05305ED0B193E9ED875 /* Pods-KASlideShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KASlideShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KASlideShow/Pods-KASlideShow.debug.xcconfig"; sourceTree = "<group>"; };
+		B36406355BF3944A56B1A418 /* libPods-KASlideShow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KASlideShow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA543C621D1BDC5B00BDDFDC /* test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpg; sourceTree = "<group>"; };
 		FA543C631D1BDC5B00BDDFDC /* test_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_2.jpg; sourceTree = "<group>"; };
 		FA543C641D1BDC5B00BDDFDC /* test_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_3.jpg; sourceTree = "<group>"; };
@@ -56,12 +60,22 @@
 				82AA9B5716B00F9700B95D4E /* UIKit.framework in Frameworks */,
 				82AA9B5916B00F9700B95D4E /* Foundation.framework in Frameworks */,
 				82AA9B5B16B00F9700B95D4E /* CoreGraphics.framework in Frameworks */,
+				E9DD6D5586217D16C16549A1 /* libPods-KASlideShow.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		734E803922D428AF0158D299 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				85F9D05305ED0B193E9ED875 /* Pods-KASlideShow.debug.xcconfig */,
+				2F61F09FD31AE81C5E67E5D4 /* Pods-KASlideShow.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		82AA9B4716B00F9700B95D4E = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +83,7 @@
 				82AA9B9416B011DF00B95D4E /* Demo */,
 				82AA9B5516B00F9700B95D4E /* Frameworks */,
 				82AA9B5316B00F9700B95D4E /* Products */,
+				734E803922D428AF0158D299 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +101,7 @@
 				82AA9B5616B00F9700B95D4E /* UIKit.framework */,
 				82AA9B5816B00F9700B95D4E /* Foundation.framework */,
 				82AA9B5A16B00F9700B95D4E /* CoreGraphics.framework */,
+				B36406355BF3944A56B1A418 /* libPods-KASlideShow.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82AA9B7616B00F9700B95D4E /* Build configuration list for PBXNativeTarget "KASlideShow" */;
 			buildPhases = (
+				9DF269D43BB106AE053DBD34 /* 📦 Check Pods Manifest.lock */,
 				82AA9B4E16B00F9700B95D4E /* Sources */,
 				82AA9B4F16B00F9700B95D4E /* Frameworks */,
 				82AA9B5016B00F9700B95D4E /* Resources */,
+				4C2DF97E86ABFE040B337857 /* 📦 Embed Pods Frameworks */,
+				EB81C4C25E7850849CE119A7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +228,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C2DF97E86ABFE040B337857 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KASlideShow/Pods-KASlideShow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DF269D43BB106AE053DBD34 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB81C4C25E7850849CE119A7 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KASlideShow/Pods-KASlideShow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		82AA9B4E16B00F9700B95D4E /* Sources */ = {
@@ -298,6 +365,7 @@
 		};
 		82AA9B7716B00F9700B95D4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85F9D05305ED0B193E9ED875 /* Pods-KASlideShow.debug.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KASlideShow/Demo/KASlideShow-Prefix.pch";
@@ -310,6 +378,7 @@
 		};
 		82AA9B7816B00F9700B95D4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F61F09FD31AE81C5E67E5D4 /* Pods-KASlideShow.release.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KASlideShow/Demo/KASlideShow-Prefix.pch";

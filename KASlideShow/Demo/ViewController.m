@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "KASlideShow.h"
 
-@interface ViewController ()
+@interface ViewController () <KASlideShowDataSource, KASlideShowDelegate>
 @property (strong,nonatomic) IBOutlet KASlideShow * slideshow;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 @property (weak, nonatomic) IBOutlet UIButton *previousButton;
@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *speedSlider;
 @end
 
-@implementation ViewController
+@implementation ViewController{
+    NSArray * _datasource;
+}
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -36,38 +38,53 @@
     self.nextButton.layer.cornerRadius = 25;
     _speedSlider.alpha = .5;
     [_speedSlider setUserInteractionEnabled:NO];
+
+    _datasource = @[[UIImage imageNamed:@"test_1.jpg"],
+                    [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
+                    @"test_3.jpg"];
     
     // KASlideshow
+    _slideshow.datasource = self;
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:KASlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpg",@"test_2.jpg",@"test_3.jpg"]]; // Add images from resources
     [_slideshow addGesture:KASlideShowGestureTap]; // Gesture to go previous/next directly on the image
-    
+}
+
+#pragma mark - KASlideShow datasource
+
+- (NSObject *)slideShow:(KASlideShow *)slideShow objectAtIndex:(NSUInteger)index
+{
+    return _datasource[index];
+}
+
+- (NSUInteger)slideShowImagesNumber:(KASlideShow *)slideShow
+{
+    return _datasource.count;
 }
 
 #pragma mark - KASlideShow delegate
 
-- (void)kaSlideShowWillShowNext:(KASlideShow *)slideShow
+- (void) slideShowWillShowNext:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowWillShowNext, index : %@",@(slideShow.currentIndex));
+    NSLog(@"slideShowWillShowNext, index : %@",@(slideShow.currentIndex));
 }
 
-- (void)kaSlideShowWillShowPrevious:(KASlideShow *)slideShow
+- (void) slideShowWillShowPrevious:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowWillShowPrevious, index : %@",@(slideShow.currentIndex));
+    NSLog(@"slideShowWillShowPrevious, index : %@",@(slideShow.currentIndex));
 }
 
-- (void) kaSlideShowDidShowNext:(KASlideShow *)slideShow
+- (void) slideShowDidShowNext:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowDidNext, index : %@",@(slideShow.currentIndex));
+    NSLog(@"slideShowDidShowNext, index : %@",@(slideShow.currentIndex));
 }
 
--(void)kaSlideShowDidShowPrevious:(KASlideShow *)slideShow
+-(void) slideShowDidShowPrevious:(KASlideShow *)slideShow
 {
-    NSLog(@"kaSlideShowDidPrevious, index : %@",@(slideShow.currentIndex));
+    NSLog(@"slideShowDidShowPrevious, index : %@",@(slideShow.currentIndex));
 }
 
 #pragma mark - Button methods
