@@ -6,7 +6,7 @@ Support local and remote images.
 ![Demo screenshot](http://i.imgur.com/xTyqOtO.gif)
 
 
-##version 4.0.0 changelog
+##version 3.0.0 changelog
 
 This version introduces a lot of breaking changes. Make sure to have a look at the demo.
 
