@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
 
         // Call delegate
-        if([delegate respondsToSelector:@selector(kaSlideShowDidShowNext:)]){
+        if([delegate respondsToSelector:@selector(slideShowDidShowNext:)]){
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 if (self.window){
