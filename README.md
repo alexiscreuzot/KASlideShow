@@ -71,7 +71,7 @@ add this line to your Podfile :
 }
 ```
 
-### KASlideShowDataSource
+###KASlideShowDataSource
 
 You need to implement the datasource to display images.
 KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (URL of remote image).
@@ -90,7 +90,7 @@ KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (
 [_slideshow stop]; // Stop automatic slideshow
 ```
 
-### KASlideShowDelegate
+###KASlideShowDelegate
 
 ```objective-c
 - (void) slideShowDidShowNext:(KASlideShow *) slideShow;
@@ -101,7 +101,7 @@ KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (
 - (void) slideShowDidSwipeRight:(KASlideShow *) slideShow;
 ```
 
-#### Transitions
+###Transitions
 
 Here are the 3 available types of transitions you can set via `setTransitionType`.
 
@@ -113,7 +113,7 @@ Here are the 3 available types of transitions you can set via `setTransitionType
 
 You can furthermore specify the transition duration via `setTransitionDuration`.
 
-#### Gestures
+###Gestures
 
 Two types gestures are available to interact with the slideshow via the `addGesture` method. It is possible to add them both.
 
