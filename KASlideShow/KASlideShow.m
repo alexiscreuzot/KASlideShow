@@ -110,13 +110,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     _datasource = datasource;
 
-    if ([self.datasource slideShowImagesNumber:self]>0) {
-        [self populateImageView:_topImageView andIndex:0];
-
-        if ([self.datasource slideShowImagesNumber:self]>1) {
-            [self populateImageView:_bottomImageView andIndex:1];
-        }
-    }
+    [self reloadData];
 }
 
 - (void) populateImageView:(UIImageView*) imageView andIndex:(NSUInteger) index
@@ -140,6 +134,19 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 }
 
 #pragma mark - Actions
+
+- (void) reloadData
+{
+    if (self.datasource != nil) {
+        if ([self.datasource slideShowImagesNumber:self]>0) {
+            [self populateImageView:_topImageView andIndex:0];
+            
+            if ([self.datasource slideShowImagesNumber:self]>1) {
+                [self populateImageView:_bottomImageView andIndex:1];
+            }
+        }
+    }
+}
 
 - (void) start
 {
