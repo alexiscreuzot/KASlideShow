@@ -20,6 +20,7 @@
 		82AA9B9916B0120C00B95D4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8316B011A600B95D4E /* AppDelegate.m */; };
 		82AA9B9A16B0120C00B95D4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82AA9B8516B011A600B95D4E /* ViewController.m */; };
 		E9DD6D5586217D16C16549A1 /* libPods-KASlideShow.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B36406355BF3944A56B1A418 /* libPods-KASlideShow.a */; };
+		EE0A48661D48DBEF00768917 /* test_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EE0A48651D48DBEF00768917 /* test_4.jpg */; };
 		FA543C651D1BDC5B00BDDFDC /* test_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C621D1BDC5B00BDDFDC /* test_1.jpg */; };
 		FA543C661D1BDC5B00BDDFDC /* test_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C631D1BDC5B00BDDFDC /* test_2.jpg */; };
 		FA543C671D1BDC5B00BDDFDC /* test_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA543C641D1BDC5B00BDDFDC /* test_3.jpg */; };
@@ -47,6 +48,7 @@
 		82AA9B9616B011F700B95D4E /* KASlideShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KASlideShow.m; sourceTree = "<group>"; };
 		85F9D05305ED0B193E9ED875 /* Pods-KASlideShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KASlideShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KASlideShow/Pods-KASlideShow.debug.xcconfig"; sourceTree = "<group>"; };
 		B36406355BF3944A56B1A418 /* libPods-KASlideShow.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KASlideShow.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE0A48651D48DBEF00768917 /* test_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_4.jpg; sourceTree = "<group>"; };
 		FA543C621D1BDC5B00BDDFDC /* test_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_1.jpg; sourceTree = "<group>"; };
 		FA543C631D1BDC5B00BDDFDC /* test_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_2.jpg; sourceTree = "<group>"; };
 		FA543C641D1BDC5B00BDDFDC /* test_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test_3.jpg; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				FA543C621D1BDC5B00BDDFDC /* test_1.jpg */,
 				FA543C631D1BDC5B00BDDFDC /* test_2.jpg */,
 				FA543C641D1BDC5B00BDDFDC /* test_3.jpg */,
+				EE0A48651D48DBEF00768917 /* test_4.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				82AA9B7316B00F9700B95D4E /* ViewController.xib in Resources */,
 				FA543C671D1BDC5B00BDDFDC /* test_3.jpg in Resources */,
 				82AA9B8F16B011B800B95D4E /* Default-568h@2x.png in Resources */,
+				EE0A48661D48DBEF00768917 /* test_4.jpg in Resources */,
 				82AA9B9016B011B800B95D4E /* Default.png in Resources */,
 				82AA9B9116B011B800B95D4E /* Default@2x.png in Resources */,
 				FA543C651D1BDC5B00BDDFDC /* test_1.jpg in Resources */,

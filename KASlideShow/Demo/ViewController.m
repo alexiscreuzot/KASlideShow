@@ -18,7 +18,7 @@
 @end
 
 @implementation ViewController{
-    NSArray * _datasource;
+    NSMutableArray * _datasource;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -39,9 +39,9 @@
     _speedSlider.alpha = .5;
     [_speedSlider setUserInteractionEnabled:NO];
 
-    _datasource = @[[UIImage imageNamed:@"test_1.jpg"],
+    _datasource = [@[[UIImage imageNamed:@"test_1.jpg"],
                     [NSURL URLWithString:@"https://i.imgur.com/7jDvjyt.jpg"],
-                    @"test_3.jpg"];
+                    @"test_3.jpg"] mutableCopy];
     
     // KASlideshow
     _slideshow.datasource = self;
@@ -138,6 +138,12 @@
         _slideshow.gestureRecognizers = nil;
         [_slideshow addGesture:KASlideShowGestureSwipe];
     }
+}
+
+- (IBAction)addImage:(id)sender
+{
+    [_datasource addObject:[UIImage imageNamed:@"test_4.jpg"]];
+    [_slideshow reloadData];
 }
 
 @end

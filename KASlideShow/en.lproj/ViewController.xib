@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -96,7 +96,7 @@
                     </connections>
                 </segmentedControl>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="PJs-QE-8dW">
-                    <rect key="frame" x="92" y="375" width="200" height="31"/>
+                    <rect key="frame" x="88" y="375" width="200" height="31"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="196" id="LTu-oc-jeE"/>
                         <constraint firstAttribute="height" constant="30" id="mxf-0f-OMK"/>
@@ -105,24 +105,49 @@
                         <action selector="selectChangeValue:" destination="-1" eventType="valueChanged" id="vK9-Ff-MHy"/>
                     </connections>
                 </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kaq-J5-IXl">
+                    <rect key="frame" x="90" y="445" width="196" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0nX-Mw-gfT"/>
+                        <constraint firstAttribute="width" constant="196" id="SI6-Rl-AWz"/>
+                    </constraints>
+                    <state key="normal" title="Add Image"/>
+                    <connections>
+                        <action selector="addImage:" destination="-1" eventType="touchUpInside" id="UMh-Rr-4hW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding image for reloading purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6VX-Nu-Yli">
+                    <rect key="frame" x="90" y="475" width="196" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="196" id="7Zp-ax-aGr"/>
+                        <constraint firstAttribute="height" constant="15" id="hJl-9k-THI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="47" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="0XP-oM-XdP"/>
                 <constraint firstAttribute="centerX" secondItem="45" secondAttribute="centerX" id="BMD-1v-jXu"/>
                 <constraint firstItem="47" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="17" id="BVx-dE-DsQ"/>
-                <constraint firstAttribute="centerX" secondItem="PJs-QE-8dW" secondAttribute="centerX" constant="-4" id="FtK-cU-QhF"/>
+                <constraint firstAttribute="centerX" secondItem="PJs-QE-8dW" secondAttribute="centerX" id="FtK-cU-QhF"/>
+                <constraint firstItem="6VX-Nu-Yli" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="G7p-41-8Xy"/>
                 <constraint firstAttribute="centerX" secondItem="tRI-1m-TZn" secondAttribute="centerX" id="N5v-0g-i4Z"/>
                 <constraint firstAttribute="trailing" secondItem="45" secondAttribute="trailing" id="UgD-uC-PCt"/>
                 <constraint firstAttribute="centerX" secondItem="36" secondAttribute="centerX" id="Wop-Fe-hUZ"/>
                 <constraint firstItem="tRI-1m-TZn" firstAttribute="top" secondItem="6" secondAttribute="top" constant="50" id="bgD-WH-b5T"/>
                 <constraint firstItem="PJs-QE-8dW" firstAttribute="top" secondItem="36" secondAttribute="bottom" constant="23" id="h09-Mf-MZQ"/>
                 <constraint firstItem="45" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="ieg-qU-Kdo"/>
+                <constraint firstItem="Kaq-J5-IXl" firstAttribute="centerX" secondItem="6" secondAttribute="centerX" id="k0E-jX-cRB"/>
                 <constraint firstAttribute="trailing" secondItem="48" secondAttribute="trailing" constant="20" id="oYW-hz-ldp"/>
                 <constraint firstItem="48" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="p5Q-hB-Wja"/>
                 <constraint firstItem="36" firstAttribute="top" secondItem="45" secondAttribute="bottom" constant="20" id="rSY-XU-0EG"/>
                 <constraint firstItem="45" firstAttribute="top" secondItem="tRI-1m-TZn" secondAttribute="bottom" constant="20" id="wc8-5q-iae"/>
+                <constraint firstItem="6VX-Nu-Yli" firstAttribute="top" secondItem="Kaq-J5-IXl" secondAttribute="bottom" id="xSF-tj-LKi"/>
                 <constraint firstItem="45" firstAttribute="top" secondItem="6" secondAttribute="top" constant="100" id="xsa-xt-mhi"/>
+                <constraint firstItem="Kaq-J5-IXl" firstAttribute="top" secondItem="PJs-QE-8dW" secondAttribute="bottom" constant="40" id="yWr-m6-Rrz"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <variation key="default">
