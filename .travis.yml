@@ -1,0 +1,9 @@
+language: objective-c
+
+branches:
+ only:
+ - master
+
+xcode_workspace: KASlideShow.xcworkspace
+xcode_scheme: KASlideShow
+xcode_sdk: iphonesimulator9.3
