@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
     [self setDefaultValues];
 }
 
