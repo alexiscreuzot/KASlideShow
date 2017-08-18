@@ -1,4 +1,4 @@
-#KASlideShow
+# KASlideShow
 
 Slideshow for iOS. Easy to use. Support manual or automatic slideshow, with fade and slide transitions. 
 Support local and remote images.
@@ -6,7 +6,7 @@ Support local and remote images.
 ![Demo screenshot](http://i.imgur.com/xTyqOtO.gif)
 
 
-##version 3.0.0 changelog
+## version 3.0.0 changelog
 
 This version introduces a lot of breaking changes. Make sure to have a look at the demo.
 
@@ -14,9 +14,9 @@ This version introduces a lot of breaking changes. Make sure to have a look at t
 - Changed `datasource` and `delegate` protocols methods for more consistency
 - Introducing the long awaited remote image handling! Just put a valid image NSURL into your `datasource` and you're all set. 
 
-##Install
+## Install
 
-###Normal install
+### Normal install
 
 Simply copy into your project folder :
 
@@ -24,14 +24,14 @@ Simply copy into your project folder :
  * KASlideShow.m
 
 
-###Using [cocoapods](http://cocoapods.org)
+### Using [cocoapods](http://cocoapods.org)
 
 add this line to your Podfile :
 `pod 'KASlideShow'`
 
-##Usage
+## Usage
 
-###Quick example
+### Quick example
 
 ```objective-c
 - (void)viewDidLoad
@@ -71,7 +71,7 @@ add this line to your Podfile :
 }
 ```
 
-###KASlideShowDataSource
+### KASlideShowDataSource
 
 You need to implement the datasource to display images.
 KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (URL of remote image).
@@ -81,7 +81,7 @@ KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (
 - (NSUInteger) slideShowImagesNumber:(KASlideShow *)slideShow;
 ```
 
-###Use of a slideshow
+### Use of a slideshow
 
 ```objective-c
 [_slideshow next]; // Go to the next image
@@ -90,7 +90,7 @@ KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (
 [_slideshow stop]; // Stop automatic slideshow
 ```
 
-###KASlideShowDelegate
+### KASlideShowDelegate
 
 ```objective-c
 - (void) slideShowDidShowNext:(KASlideShow *) slideShow;
@@ -101,7 +101,7 @@ KASlideShow can handle `UIImage`, `NNString` (name of local image) and `NSURL` (
 - (void) slideShowDidSwipeRight:(KASlideShow *) slideShow;
 ```
 
-###Transitions
+### Transitions
 
 Here are the 3 available types of transitions you can set via `setTransitionType`.
 
@@ -113,12 +113,12 @@ Here are the 3 available types of transitions you can set via `setTransitionType
 
 You can furthermore specify the transition duration via `setTransitionDuration`.
 
-###Gestures
+### Gestures
 
 Two types gestures are available to interact with the slideshow via the `addGesture` method. It is possible to add them both.
 
 ```
-    KASlideShowTransitionFade
-    KASlideShowTransitionSlideHorizontal
-    KASlideShowTransitionSlideVertical
+    KASlideShowGestureTap
+    KASlideShowGestureSwipe
+    KASlideShowGestureAll
 ```
