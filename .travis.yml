@@ -6,4 +6,4 @@ branches:
  - master
 
 script:
-- xcodebuild clean build -sdk iphonesimulator -project KASlideShow.xcodeproj -scheme KASlideShow CODE_SIGNING_REQUIRED=NO
+- xcodebuild clean build -sdk iphonesimulator -workspace KASlideShow.xcworkspace -scheme KASlideShow CODE_SIGNING_REQUIRED=NO
