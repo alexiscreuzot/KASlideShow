@@ -1,3 +1,7 @@
+[![Language](https://img.shields.io/badge/language-objectivec-orange.svg)](https://developer.apple.com/documentation/objectivec)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/KASlideShow.svg)](https://img.shields.io/cocoapods/v/KASlideShow.svg)
+[![Build Status](https://travis-ci.org/kirualex/KASlideShow.svg?branch=master)](https://travis-ci.org/kirualex/KASlideShow)
+
 # KASlideShow
 
 Slideshow for iOS. Easy to use. Support manual or automatic slideshow, with fade and slide transitions. 
