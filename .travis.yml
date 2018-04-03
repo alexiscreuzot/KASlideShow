@@ -1,9 +1,9 @@
 language: objective-c
+osx_image: xcode9.3
 
 branches:
  only:
  - master
 
-xcode_workspace: KASlideShow.xcworkspace
-xcode_scheme: KASlideShow
-xcode_sdk: iphonesimulator9.3
+script:
+- xcodebuild clean build -sdk iphonesimulator -project KASlideShow.xcodeproj -scheme KASlideShow CODE_SIGNING_REQUIRED=NO
