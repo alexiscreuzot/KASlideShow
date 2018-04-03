@@ -196,7 +196,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 if (self.window){
-                    [delegate slideShowDidShowNext:self];
+                    [self->delegate slideShowDidShowNext:self];
                 }
             });
         }
@@ -243,7 +243,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, transitionDuration * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 if (self.window){
-                    [delegate slideShowDidShowPrevious:self];
+                    [self->delegate slideShowDidShowPrevious:self];
                 }
             });
         }
@@ -259,18 +259,18 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 
     [UIView animateWithDuration:transitionDuration
                      animations:^{
-                         _topImageView.alpha = 0;
+                         self->_topImageView.alpha = 0;
                      }
                      completion:^(BOOL finished){
 
-                         _topImageView.image = _bottomImageView.image;
-                         _topImageView.alpha = 1;
+                         self->_topImageView.image = self->_bottomImageView.image;
+                         self->_topImageView.alpha = 1;
 
-                         _isAnimating = NO;
+                         self->_isAnimating = NO;
 
-                         if(! _doStop){
+                         if(! self->_doStop){
                              [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
-                             [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+                             [self performSelector:@selector(next) withObject:nil afterDelay:self->delay];
                          }
                      }];
 }
@@ -289,23 +289,23 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      animations:^{
 
                          if(mode == KASlideShowSlideModeBackward){
-                             _topImageView.transform = CGAffineTransformMakeTranslation( _topImageView.frame.size.width, 0);
-                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                             self->_topImageView.transform = CGAffineTransformMakeTranslation( self->_topImageView.frame.size.width, 0);
+                             self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }else if(mode == KASlideShowSlideModeForward){
-                             _topImageView.transform = CGAffineTransformMakeTranslation(- _topImageView.frame.size.width, 0);
-                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                             self->_topImageView.transform = CGAffineTransformMakeTranslation(- self->_topImageView.frame.size.width, 0);
+                             self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }
                      }
                      completion:^(BOOL finished){
 
-                         _topImageView.image = _bottomImageView.image;
-                         _topImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                         self->_topImageView.image = self->_bottomImageView.image;
+                         self->_topImageView.transform = CGAffineTransformMakeTranslation(0, 0);
 
-                         _isAnimating = NO;
+                         self->_isAnimating = NO;
 
-                         if(! _doStop){
+                         if(! self->_doStop){
                              [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
-                             [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+                             [self performSelector:@selector(next) withObject:nil afterDelay:self->delay];
                          }
                      }];
 }
@@ -325,23 +325,23 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      animations:^{
 
                          if(mode == KASlideShowSlideModeBackward){
-                             _topImageView.transform = CGAffineTransformMakeTranslation(0, _topImageView.frame.size.height);
-                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                             self->_topImageView.transform = CGAffineTransformMakeTranslation(0, self->_topImageView.frame.size.height);
+                             self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }else if(mode == KASlideShowSlideModeForward){
-                             _topImageView.transform = CGAffineTransformMakeTranslation(0, - _topImageView.frame.size.height);
-                             _bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                             self->_topImageView.transform = CGAffineTransformMakeTranslation(0, - self->_topImageView.frame.size.height);
+                             self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }
                      }
                      completion:^(BOOL finished){
 
-                         _topImageView.image = _bottomImageView.image;
-                         _topImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+                         self->_topImageView.image = self->_bottomImageView.image;
+                         self->_topImageView.transform = CGAffineTransformMakeTranslation(0, 0);
 
-                         _isAnimating = NO;
+                         self->_isAnimating = NO;
 
-                         if(! _doStop){
+                         if(! self->_doStop){
                              [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(next) object:nil];
-                             [self performSelector:@selector(next) withObject:nil afterDelay:delay];
+                             [self performSelector:@selector(next) withObject:nil afterDelay:self->delay];
                          }
                      }];
 }
