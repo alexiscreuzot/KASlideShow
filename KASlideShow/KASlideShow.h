@@ -26,6 +26,11 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
     KASlideShowStateStarted
 };
 
+typedef NS_ENUM(NSInteger, KASlideShowDirection) {
+    KASlideShowDirectionForward,
+    KASlideShowDirectionBackward
+};
+
 @class KASlideShow;
 @protocol KASlideShowDelegate <NSObject>
 @optional
@@ -65,6 +70,7 @@ typedef NS_ENUM(NSUInteger, KASlideShowState) {
 - (void) stop;
 - (void) previous;
 - (void) next;
+- (void) jumpTo:(NSUInteger) index direction:(KASlideShowDirection) direction;
 
 @end
 

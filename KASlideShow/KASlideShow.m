@@ -7,11 +7,6 @@
 
 #define kSwipeTransitionDuration 0.25 // default timing
 
-typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
-    KASlideShowSlideModeForward,
-    KASlideShowSlideModeBackward
-};
-
 @interface KASlideShow()
 @property (atomic) BOOL doStop;
 @property (atomic) BOOL isAnimating;
@@ -82,7 +77,8 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:@{@"view":_topImageView}]];
 
-    _topImageView.backgroundColor = [UIColor whiteColor];
+    _bottomImageView.backgroundColor = self.backgroundColor;
+    _topImageView.backgroundColor = self.backgroundColor;
 }
 
 #pragma mark - Get / Set
@@ -165,31 +161,13 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     if (!self.window) return;
 
-    if(! _isAnimating && (self.datasource && [self.datasource slideShowImagesNumber:self] >1)) {
+    if(!_isAnimating && (self.datasource && [self.datasource slideShowImagesNumber:self] >1)) {
 
         if ([self.delegate respondsToSelector:@selector(slideShowWillShowNext:)]) [self.delegate slideShowWillShowNext:self];
 
         // Next Image
         NSUInteger nextIndex = (_currentIndex+1)%[self.datasource slideShowImagesNumber:self];
-        [self populateImageView:_topImageView andIndex:_currentIndex];
-        [self populateImageView:_bottomImageView andIndex:nextIndex];
-        _currentIndex = nextIndex;
-
-        // Animate
-        switch (transitionType) {
-            case KASlideShowTransitionFade:
-                [self animateFade];
-                break;
-
-            case KASlideShowTransitionSlideHorizontal:
-                [self animateSlideHorizontal:KASlideShowSlideModeForward];
-                break;
-
-            case KASlideShowTransitionSlideVertical:
-                [self animateSlideVertical:KASlideShowSlideModeForward];
-                break;
-
-        }
+        [self jumpTo:nextIndex direction:KASlideShowDirectionForward];
 
         // Call delegate
         if([delegate respondsToSelector:@selector(slideShowDidShowNext:)]){
@@ -207,7 +185,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
 {
     if (!self.window) return;
 
-    if(! _isAnimating && (self.datasource && [self.datasource slideShowImagesNumber:self] >1)) {
+    if(!_isAnimating && (self.datasource && [self.datasource slideShowImagesNumber:self] >1)) {
 
         if ([self.delegate respondsToSelector:@selector(slideShowWillShowPrevious:)]) [self.delegate slideShowWillShowPrevious:self];
 
@@ -218,25 +196,7 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }else{
             prevIndex = (_currentIndex-1)%[self.datasource slideShowImagesNumber:self];
         }
-        [self populateImageView:_topImageView andIndex:_currentIndex];
-        [self populateImageView:_bottomImageView andIndex:prevIndex];
-        _currentIndex = prevIndex;
-
-
-        // Animate
-        switch (transitionType) {
-            case KASlideShowTransitionFade:
-                [self animateFade];
-                break;
-
-            case KASlideShowTransitionSlideHorizontal:
-                [self animateSlideHorizontal:KASlideShowSlideModeBackward];
-                break;
-
-            case KASlideShowTransitionSlideVertical:
-                [self animateSlideVertical:KASlideShowSlideModeBackward];
-                break;
-        }
+        [self jumpTo:prevIndex direction:KASlideShowDirectionBackward];
 
         // Call delegate
         if([delegate respondsToSelector:@selector(slideShowDidShowPrevious:)]){
@@ -249,6 +209,33 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
         }
     }
 
+}
+
+- (void)jumpTo:(NSUInteger)index direction:(KASlideShowDirection) mode
+{
+    if (!self.window) return;
+    
+    if(!_isAnimating && (self.datasource && [self.datasource slideShowImagesNumber:self] >1)) {
+        
+        [self populateImageView:_topImageView andIndex:_currentIndex];
+        [self populateImageView:_bottomImageView andIndex:index];
+        _currentIndex = index;
+        
+        // Animate
+        switch (transitionType) {
+            case KASlideShowTransitionFade:
+                [self animateFade];
+                break;
+                
+            case KASlideShowTransitionSlideHorizontal:
+                [self animateSlideHorizontal:mode];
+                break;
+                
+            case KASlideShowTransitionSlideVertical:
+                [self animateSlideVertical:mode];
+                break;
+        }
+    }
 }
 
 #pragma mark - Animation logic
@@ -275,23 +262,23 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      }];
 }
 
-- (void) animateSlideHorizontal:(KASlideShowSlideMode) mode
+- (void) animateSlideHorizontal:(KASlideShowDirection) mode
 {
     _isAnimating = YES;
 
-    if(mode == KASlideShowSlideModeBackward){
+    if(mode == KASlideShowDirectionBackward){
         _bottomImageView.transform = CGAffineTransformMakeTranslation(- _bottomImageView.frame.size.width, 0);
-    }else if(mode == KASlideShowSlideModeForward){
+    }else if(mode == KASlideShowDirectionForward){
         _bottomImageView.transform = CGAffineTransformMakeTranslation(_bottomImageView.frame.size.width, 0);
     }
 
     [UIView animateWithDuration:transitionDuration
                      animations:^{
 
-                         if(mode == KASlideShowSlideModeBackward){
+                         if(mode == KASlideShowDirectionBackward){
                              self->_topImageView.transform = CGAffineTransformMakeTranslation( self->_topImageView.frame.size.width, 0);
                              self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
-                         }else if(mode == KASlideShowSlideModeForward){
+                         }else if(mode == KASlideShowDirectionForward){
                              self->_topImageView.transform = CGAffineTransformMakeTranslation(- self->_topImageView.frame.size.width, 0);
                              self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }
@@ -310,13 +297,13 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
                      }];
 }
 
-- (void) animateSlideVertical:(KASlideShowSlideMode) mode
+- (void) animateSlideVertical:(KASlideShowDirection) mode
 {
     _isAnimating = YES;
 
-    if(mode == KASlideShowSlideModeBackward){
+    if(mode == KASlideShowDirectionBackward){
         _bottomImageView.transform = CGAffineTransformMakeTranslation(0,- _bottomImageView.frame.size.height);
-    }else if(mode == KASlideShowSlideModeForward){
+    }else if(mode == KASlideShowDirectionForward){
         _bottomImageView.transform = CGAffineTransformMakeTranslation(0,_bottomImageView.frame.size.height);
     }
 
@@ -324,10 +311,10 @@ typedef NS_ENUM(NSInteger, KASlideShowSlideMode) {
     [UIView animateWithDuration:transitionDuration
                      animations:^{
 
-                         if(mode == KASlideShowSlideModeBackward){
+                         if(mode == KASlideShowDirectionBackward){
                              self->_topImageView.transform = CGAffineTransformMakeTranslation(0, self->_topImageView.frame.size.height);
                              self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
-                         }else if(mode == KASlideShowSlideModeForward){
+                         }else if(mode == KASlideShowDirectionForward){
                              self->_topImageView.transform = CGAffineTransformMakeTranslation(0, - self->_topImageView.frame.size.height);
                              self->_bottomImageView.transform = CGAffineTransformMakeTranslation(0, 0);
                          }
